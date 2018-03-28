@@ -1,0 +1,44 @@
+#!/bin/bash
+
+. rabot-utils
+if [ "$?" -ne "0" ]; then
+    echo "$0: Error while sourcing rabot-utils" >&2
+    exit 1
+fi
+
+# Construct path to build dir
+buildDir="$HOME/build/$(stripBaseDir $PWD $HOME)"
+exitOnError "buildDir"
+
+# Remove existing build dir
+rm -rf $buildDir
+exitOnError "rm -rf $buildDir"
+
+# Remove previous release files
+rm -rf docs/*
+exitOnError "clean docs"
+
+# cd into script's parent dir
+cd $(dirname $(readlink -f $0))
+exitOnError "cd into parent dir"
+
+# Build site
+anthos source
+exitOnError "build site"
+
+# Copy release files into release dir
+cp -r $buildDir/html/* docs/
+exitOnError "copy release files"
+
+gtcommit -A "$(fullts)"
+exitOnError "gtcommit"
+
+git push
+exitOnError "git push"
+
+# Update local copy
+rm -rf /media/sf_mshare/notes/*
+exitOnError "clean local copy"
+
+cp -r docs/* /media/sf_mshare/notes/
+exitOnError "copy release files to local copy"

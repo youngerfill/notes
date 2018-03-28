@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exercise 1.06</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../../index.html">notes</a> &#47;
+                <a href="../../index.html">SICP reading notes</a> &#47;
+                <a href="../index.html">Chapter1</a> &#47;
+                <a href=""> Exercise 1.06 </a>
+            </div>
+
+    
+    
+    
+            <div class="browse">
+                        <a href="../Ex1.05/index.html" title="Exercise 1.05">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.07/index.html" title="Exercise 1.07">next&gt;</a>
+            </div>
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="exercise-1-06">
+<h1>Exercise 1.06</h1>
+<div class="section" id="background-section-1-1-7-square-roots-by-newton-s-method">
+<h2>Background: Section 1.1.7, Square Roots by Newton’s Method</h2>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">average</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">average</span> <span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">square</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span> <span class="mf">0.001</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+                 <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">sqrt </span><span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="nv">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="question">
+<h2>Question:</h2>
+<p>Alyssa P. Hacker doesn’t see why <code class="docutils literal notranslate"><span class="pre">if</span></code> needs to be provided as a special form. “Why can’t I just define it as an ordinary procedure in terms of <code class="docutils literal notranslate"><span class="pre">cond</span></code>?” she asks. Alyssa’s friend Eva Lu Ator claims this can indeed be done, and she defines a new version of <code class="docutils literal notranslate"><span class="pre">if</span></code>:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">new-if</span> <span class="nv">predicate</span> <span class="nv">then-clause</span> <span class="nv">else-clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nf">predicate</span> <span class="nv">then-clause</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">else </span><span class="nv">else-clause</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Eva demonstrates the program for Alyssa:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">new-if</span> <span class="p">(</span><span class="nb">= </span><span class="mi">2</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">5</span>
+
+<span class="p">(</span><span class="nf">new-if</span> <span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>Delighted, Alyssa uses new-if to rewrite the square-root program:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">new-if</span> <span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+          <span class="nv">guess</span>
+          <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+                     <span class="nv">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>What happens when Alyssa attempts to use this to compute square roots? Explain.</p>
+</div>
+<div class="section" id="answer">
+<h2>Answer:</h2>
+<p>The program gets stuck in an infinite loop.</p>
+<p>As <code class="docutils literal notranslate"><span class="pre">new-if</span></code> is not a special form, both the <em>consequent</em> and the <em>alternative</em> expression are always evaluated, regardless of the value of the <em>predicate</em>. So, in the case of <code class="docutils literal notranslate"><span class="pre">sqrt-iter</span></code> the call to <code class="docutils literal notranslate"><span class="pre">(sqrt-iter</span> <span class="pre">...)</span></code> in the <em>consequent</em> is endlessly recursive, and never finishes.</p>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+            <div class="browse">
+                        <a href="../Ex1.05/index.html" title="Exercise 1.05">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.07/index.html" title="Exercise 1.07">next&gt;</a>
+            </div>
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

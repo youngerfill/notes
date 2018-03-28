@@ -1,0 +1,4 @@
+bash	source/cheatsheet/index	source/pygmentstest/index
+C++	source/pygmentstest/index
+Python	source/pygmentstest/index
+sicp	source/sicp/index

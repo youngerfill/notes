@@ -1,0 +1,862 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Cheat Sheet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../index.html">notes</a> &#47;
+                <a href=""> Cheat Sheet </a>
+            </div>
+
+    
+    
+    
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-12-09 10:25:44 UTC
+            </div>
+    
+        <div class="tags">
+            <a href="../tags/bash/index.html" title="tag"> bash </a>
+        </div>
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="cheat-sheet">
+<h1>Cheat Sheet</h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cheat-sheet" id="id1">Cheat Sheet</a><ul>
+<li><a class="reference internal" href="#check-folder-size" id="id2">Check folder size:</a></li>
+<li><a class="reference internal" href="#clear-trash-folder-ubuntu-friends" id="id3">Clear trash folder (Ubuntu &amp; friends):</a></li>
+<li><a class="reference internal" href="#restore-networking-in-arch-linux-virtualbox-vm" id="id4">Restore networking in Arch Linux VirtualBox VM:</a></li>
+<li><a class="reference internal" href="#wget" id="id5">wget</a></li>
+<li><a class="reference internal" href="#youtube-dl" id="id6">youtube-dl</a></li>
+<li><a class="reference internal" href="#zenity" id="id7">zenity</a></li>
+<li><a class="reference internal" href="#tail" id="id8">tail</a></li>
+<li><a class="reference internal" href="#mount" id="id9">mount</a></li>
+<li><a class="reference internal" href="#bash" id="id10">bash</a><ul>
+<li><a class="reference internal" href="#redirection-in-bash" id="id11">Redirection in bash</a></li>
+<li><a class="reference internal" href="#booleans-in-bash" id="id12">Booleans in bash</a></li>
+<li><a class="reference internal" href="#globbing-in-bash" id="id13">Globbing in bash</a></li>
+<li><a class="reference internal" href="#variable-assignment-in-bash" id="id14">Variable assignment in bash</a></li>
+<li><a class="reference internal" href="#keyboard-shortcuts-in-bash" id="id15">Keyboard shortcuts in bash:</a></li>
+<li><a class="reference internal" href="#miscellaneous-bash-commands" id="id16">Miscellaneous bash commands:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ln" id="id17">ln</a></li>
+<li><a class="reference internal" href="#tar" id="id18">tar</a></li>
+<li><a class="reference internal" href="#check-linux-version" id="id19">Check Linux version</a></li>
+<li><a class="reference internal" href="#logfiles" id="id20">Logfiles</a></li>
+<li><a class="reference internal" href="#batch-renaming" id="id21">Batch renaming</a></li>
+<li><a class="reference internal" href="#ls-find-grep" id="id22">ls, find, grep</a></li>
+<li><a class="reference internal" href="#directories" id="id23">directories</a></li>
+<li><a class="reference internal" href="#lines-in-files" id="id24">Lines in files</a></li>
+<li><a class="reference internal" href="#modify-files" id="id25">Modify files</a></li>
+<li><a class="reference internal" href="#package-management" id="id26">Package management</a><ul>
+<li><a class="reference internal" href="#dpkg" id="id27">dpkg</a></li>
+<li><a class="reference internal" href="#pacman" id="id28">pacman</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#openbox" id="id29">OpenBox</a></li>
+<li><a class="reference internal" href="#make-bootable-usb-stick-from-iso-file" id="id30">Make bootable USB stick from .iso file</a></li>
+<li><a class="reference internal" href="#vim" id="id31">vim</a></li>
+<li><a class="reference internal" href="#scp" id="id32">scp</a></li>
+<li><a class="reference internal" href="#apt-get-and-dpkg" id="id33">apt-get and dpkg</a></li>
+<li><a class="reference internal" href="#echo-text-and-redirect-to-privileged-file" id="id34">echo text and redirect to privileged file:</a></li>
+<li><a class="reference internal" href="#start-stop-enable-disable-daemons" id="id35">Start/stop/enable/disable daemons</a></li>
+<li><a class="reference internal" href="#list-of-options-for-setxkbmap" id="id36">List of options for ‘setxkbmap’:</a></li>
+<li><a class="reference internal" href="#tmux" id="id37">tmux</a></li>
+<li><a class="reference internal" href="#install-oracle-java-7-in-debian-wheezy" id="id38">Install Oracle Java 7 in Debian Wheezy:</a></li>
+<li><a class="reference internal" href="#git" id="id39">Git</a><ul>
+<li><a class="reference internal" href="#web-project-use-github-pages-for-a-live-demo" id="id40">Web project: use Github Pages for a live demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="check-folder-size">
+<h2>Check folder size:</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>du -sh foldername/
+</pre></div>
+</div>
+</div>
+<div class="section" id="clear-trash-folder-ubuntu-friends">
+<h2>Clear trash folder (Ubuntu &amp; friends):</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm -rf ~/.local/share/Trash/files ~/.local/share/Trash/info
+</pre></div>
+</div>
+</div>
+<div class="section" id="restore-networking-in-arch-linux-virtualbox-vm">
+<h2>Restore networking in Arch Linux VirtualBox VM:</h2>
+<dl class="docutils">
+<dt>::</dt>
+<dd>sudo ip link set enp0s8 down &amp;&amp; sudo ip link set enp0s8 up &amp;&amp; curl www.google.com</dd>
+</dl>
+</div>
+<div class="section" id="wget">
+<h2>wget</h2>
+<p>Mirror site:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -mkE http://www.example.com
+</pre></div>
+</div>
+<p>Mirror subdirectory of website:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -mkE -np http://www.example.com/subdir/
+</pre></div>
+</div>
+<p>Mirror full web page:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget -pkE -np -nH -nd http://www.example.com/page.html
+wget -np -k -p -nd -nH -H -E http://www.example.com/page.html
+</pre></div>
+</div>
+<p>Related: extract URLs (‘<a class="reference external" href="http://">http://</a>…’ ones) from HTML file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed <span class="s1">&#39;s/&lt;a href=&quot;/\n/g&#39;</span> index.html <span class="p">|</span> sed <span class="s1">&#39;s/&quot;&gt;/\n/g&#39;</span> <span class="p">|</span> grep <span class="s2">&quot;^http:&quot;</span> <span class="p">|</span> sort -u
+</pre></div>
+</div>
+</div>
+<div class="section" id="youtube-dl">
+<h2>youtube-dl</h2>
+<p>Download video from YouTube:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl <span class="s2">&quot;URL&quot;</span>
+</pre></div>
+</div>
+<p>Download audio from YouTube:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -x -o <span class="s2">&quot;%(title)s.%(ext)s&quot;</span> <span class="s2">&quot;URL&quot;</span>
+</pre></div>
+</div>
+<p>Download audio &amp; convert to mp3:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>youtube-dl -x --audio-format <span class="s2">&quot;mp3&quot;</span> -o <span class="s2">&quot;%(title)s.%(ext)s&quot;</span> <span class="s2">&quot;URL&quot;</span>
+</pre></div>
+</div>
+<p>Download videos listed in urls.txt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat urls.txt <span class="p">|</span> xargs -I<span class="o">{}</span> youtube-dl <span class="s2">&quot;{}&quot;</span>
+</pre></div>
+</div>
+<p>Download audio of videos listed in urls.txt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat urls.txt <span class="p">|</span> xargs -I<span class="o">{}</span> youtube-dl -x -o <span class="s2">&quot;%(autonumber)s - %(title)s.%(ext)s&quot;</span> <span class="s2">&quot;{}&quot;</span>
+</pre></div>
+</div>
+<p>Update program:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo youtube-dl -U
+</pre></div>
+</div>
+</div>
+<div class="section" id="zenity">
+<h2>zenity</h2>
+<p>Zenity menu:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zenity --width<span class="o">=</span><span class="m">640</span> --height<span class="o">=</span><span class="m">480</span> --list --column <span class="s2">&quot;Number&quot;</span> --column <span class="s2">&quot;Name&quot;</span> --title<span class="o">=</span><span class="s2">&quot;Numbers and their names&quot;</span> --text<span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="m">1</span> one <span class="m">2</span> two <span class="m">3</span> three
+</pre></div>
+</div>
+<p>Zenity menu from textfile, 1st line is the title, 2nd line are the column names, separated by tab characters, rest of the file are line entries separated by newlines, divided in columns by tab characters:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span> zenity --width<span class="o">=</span><span class="m">640</span> --height<span class="o">=</span><span class="m">480</span> --list <span class="k">$(</span>cat menu.txt <span class="p">|</span> sed <span class="s1">&#39;2q;d&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^/--column\ \&quot;/&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/$/\&quot;/&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;\n&#39;</span> <span class="s1">&#39; &#39;</span><span class="k">)</span> --title<span class="o">=</span><span class="k">$(</span>cat menu.txt <span class="p">|</span> head -n <span class="m">1</span> <span class="p">|</span> sed <span class="s1">&#39;s/^/\&quot;/&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/$/\&quot;/&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;\n&#39;</span> <span class="s1">&#39; &#39;</span><span class="k">)</span> <span class="k">$(</span>cat menu.txt <span class="p">|</span> tail -n +3 <span class="p">|</span> tr <span class="s1">&#39;\t&#39;</span> <span class="s1">&#39;\n&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^/\&quot;/&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/$/\&quot;/&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;\n&#39;</span> <span class="s1">&#39; &#39;</span><span class="k">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tail">
+<h2>tail</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail -f /var/log/messages
+</pre></div>
+</div>
+</div>
+<div class="section" id="mount">
+<h2>mount</h2>
+<p>Mount ext3 partition:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo mkdir /media/bigpart
+sudo mount /dev/sda4 /media/bigpart -t ext3
+</pre></div>
+</div>
+</div>
+<div class="section" id="bash">
+<h2>bash</h2>
+<div class="section" id="redirection-in-bash">
+<h3>Redirection in bash</h3>
+<p>Redirect stderr of command to stdout:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Don’t output anything:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Echo to stderr:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> Hello &gt;<span class="p">&amp;</span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Iterate over output of command, one line per iteration, and write output to a file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> Another line: <span class="nv">$line</span>
+<span class="k">done</span> &lt; &lt;<span class="o">(</span>some_command arg1 arg2<span class="o">)</span> &gt; afile.txt
+</pre></div>
+</div>
+<p>Send value of a variable as standard input (stdin) to a command, and capture output in another variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">myvar</span><span class="o">=</span><span class="s2">&quot;one two&quot;</span>
+$ <span class="nv">yourvar</span><span class="o">=</span><span class="k">$(</span>tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;_&#39;</span> <span class="o">&lt;&lt;&lt;</span><span class="nv">$myvar</span><span class="k">)</span>
+$ <span class="nb">echo</span> <span class="nv">$yourvar</span>
+one_two
+</pre></div>
+</div>
+<p>Send value of a variable as input to a chain of piped commands, and capture output in another variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">myvar</span><span class="o">=</span>abcde
+$ <span class="nv">yourvar</span><span class="o">=</span><span class="k">$(</span>tr <span class="s1">&#39;a&#39;</span> <span class="s1">&#39;b&#39;</span> <span class="o">&lt;&lt;&lt;</span><span class="nv">$myvar</span> <span class="p">|</span> tr <span class="s1">&#39;b&#39;</span> <span class="s1">&#39;c&#39;</span> <span class="p">|</span> tr <span class="s1">&#39;c&#39;</span> <span class="s1">&#39;d&#39;</span><span class="k">)</span>
+$ <span class="nb">echo</span> <span class="nv">$yourvar</span>
+dddde
+</pre></div>
+</div>
+<p>Truncate a file (wipe its contents):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; myfile.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="booleans-in-bash">
+<h3>Booleans in bash</h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">hot</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="k">if</span> <span class="nv">$hot</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;It&#39;s hot&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&quot;It&#39;s cold&quot;</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="globbing-in-bash">
+<h3>Globbing in bash</h3>
+<p>Test if glob expands to anything:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">theGlob</span><span class="o">=</span>*.html
+<span class="k">if</span> stat -t <span class="nv">$theGlob</span> &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> *.html
+<span class="k">else</span>
+    <span class="nb">echo</span> No matches found.
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>or with “find”:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">theGlob</span><span class="o">=</span>*.html
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="k">$(</span>find . -maxdepth <span class="m">1</span> -name <span class="s2">&quot;</span><span class="nv">$theGlob</span><span class="s2">&quot;</span> -print -quit<span class="k">)</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> *.html
+<span class="k">else</span>
+    <span class="nb">echo</span> No matches found.
+<span class="k">fi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="variable-assignment-in-bash">
+<h3>Variable assignment in bash</h3>
+<p>Set the variable logDir to $LOG_DIR, or ‘~/log’ if $LOG_DIR is an empty string:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">logDir</span><span class="o">=</span><span class="si">${</span><span class="nv">LOG_DIR</span><span class="k">:-</span><span class="p">~/log</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  $ <span class="nv">someVar</span><span class="o">=</span>foo
+  $ <span class="nv">emptyVar</span><span class="o">=</span>
+  $ <span class="nv">myVar</span><span class="o">=</span><span class="si">${</span><span class="nv">someVar</span><span class="k">:-</span><span class="nv">bar</span><span class="si">}</span>
+  $ <span class="nv">yourVar</span><span class="o">=</span><span class="si">${</span><span class="nv">emptyVar</span><span class="k">:-</span><span class="nv">bar</span><span class="si">}</span>
+  $ <span class="nb">echo</span> <span class="nv">myVar</span> <span class="o">=</span> <span class="nv">$myVar</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">yourVar</span> <span class="o">=</span> <span class="nv">$yourVar</span>
+<span class="nv">myVar</span> <span class="o">=</span> foo
+<span class="nv">yourVar</span> <span class="o">=</span> bar
+</pre></div>
+</div>
+<p>Set the variable myVar to ‘foo’ if $myVar is an empty string, otherwise leave myVar unchanged</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>: <span class="si">${</span><span class="nv">myVar</span><span class="p">:=foo</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  $ <span class="nv">myVar</span><span class="o">=</span>foo
+  $ <span class="nv">yourVar</span><span class="o">=</span>
+  $ : <span class="si">${</span><span class="nv">myVar</span><span class="p">:=bar</span><span class="si">}</span>
+  $ : <span class="si">${</span><span class="nv">yourVar</span><span class="p">:=bar</span><span class="si">}</span>
+  $ <span class="nb">echo</span> <span class="nv">myVar</span> <span class="o">=</span> <span class="nv">$myVar</span><span class="p">;</span> <span class="nb">echo</span> <span class="nv">yourVar</span> <span class="o">=</span> <span class="nv">$yourVar</span>
+<span class="nv">myVar</span> <span class="o">=</span> foo
+<span class="nv">yourVar</span> <span class="o">=</span> bar
+</pre></div>
+</div>
+<p>Equivalent of ternary operator in bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[[</span> <span class="s2">&quot;</span><span class="nv">$year</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;leapyear&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nv">numdays</span><span class="o">=</span><span class="m">366</span> <span class="o">||</span> <span class="nv">numdays</span><span class="o">=</span><span class="m">365</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keyboard-shortcuts-in-bash">
+<h3>Keyboard shortcuts in bash:</h3>
+<p>Clear screen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ctrl-l
+</pre></div>
+</div>
+<p>Open editor to write command in:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Ctrlv-XE
+</pre></div>
+</div>
+<p>Keyboard shortcuts (from: <a class="reference external" href="http://www.getoffmalawn.com/blog/useful-bash-shortcuts">http://www.getoffmalawn.com/blog/useful-bash-shortcuts</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Movement
+--------
+
+Shortcut        Action
+Ctrl-a          Move to the start of the line
+Ctrl-e          Move to the end of the line
+Ctrl-b          Move back one character
+Alt-b           Move back one word
+Ctrl-f          Move forward one character
+Alt-f           Move forward one word
+Ctrl-] x        Move the cursor forward to next occurance of x
+Alt-Ctrl-] x    Move the cursor backward to the next occurance of x
+
+
+Line Modification
+-----------------
+
+Shortcut        Action
+Ctrl-u          Delete from the cursor to the beginning of the line
+Ctrl-k          Delete from the cursor to the end of the line
+Esc Backspace   Delete back a word
+Alt-d           Delete forward a word
+Alt-r           Undo all changes to the line
+Ctrl-y          Paste any text deleted with previous shortcuts
+Ctrl-e Esc-t    Swap order of the last two arguments
+
+
+History Utilisation
+-------------------
+
+Shortcut        Action
+Ctrl-x Ctrl-u   Undo the last change to the line
+Ctrl-r          Incremental reverse search of history
+Alt-p           Non-incremental reverse search of history
+Ctrl-L          Clear the screen (doesn&#39;t wipe current line)
+!!              Execute last command in history
+!abc            Execute last command in history beginning with abc
+!n              Execute nth command in history
+!$              Last argument of previous command
+!^              First argument of previous command
+^abc^xyz        Replace first occurance of abc with xyz in previous command and execute it
+Alt-. (period)  Paste last word from previous command after cursor position (repeat to cycle through previous commands)
+</pre></div>
+</div>
+</div>
+<div class="section" id="miscellaneous-bash-commands">
+<h3>Miscellaneous bash commands:</h3>
+<p>List commands found in bash history, sorted by usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ~/.bash_history <span class="p">|</span> cut -f1 -d<span class="s1">&#39; &#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n -r <span class="p">|</span> more
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ln">
+<h2>ln</h2>
+<p>Create hard links in a folder to all files in another folder, eg:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -t ~/.gnome2/nautilus-scripts ~/tools/nautilus/*
+</pre></div>
+</div>
+<p>Create symbolic link named ‘LNK’ to target file named ‘TGT’:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -s TGT LNK
+</pre></div>
+</div>
+<p>Run command in background and return to shell immediately (e.g. ‘firefox index.html’).
+Don’t write any output to nohup.out.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nohup firefox index.html &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tar">
+<h2>tar</h2>
+<p>Create tar.gz from directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar cpzf mydir.tar.gz mydir
+</pre></div>
+</div>
+<p>Extract directory from tar.gz file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xzf mydir.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="section" id="check-linux-version">
+<h2>Check Linux version</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /etc/issue
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsb_release -a
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /etc/lsb-release
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uname -a
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat /proc/version
+</pre></div>
+</div>
+</div>
+<div class="section" id="logfiles">
+<h2>Logfiles</h2>
+<p>Browse syslog with vim (requires <a class="reference external" href="https://github.com/bergoid/rabot">https://github.com/bergoid/rabot</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find /var/log -maxdepth <span class="m">1</span> <span class="p">|</span> grep syslog <span class="p">|</span> sort <span class="p">|</span> flon
+</pre></div>
+</div>
+</div>
+<div class="section" id="batch-renaming">
+<h2>Batch renaming</h2>
+<p>Replace a substring ‘foo’ with ‘bar’ in all names of textfiles</p>
+<p>Output every renaming command for review:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> filename in *.txt <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> mv <span class="se">\&quot;</span><span class="nv">$filename</span><span class="se">\&quot;</span> <span class="se">\&quot;</span><span class="si">${</span><span class="nv">filename</span><span class="p">//foo/bar</span><span class="si">}</span><span class="se">\&quot;</span><span class="p">;</span> <span class="k">done</span>
+</pre></div>
+</div>
+<p>Execute the reviewed commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> filename in *.txt <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> mv <span class="se">\&quot;</span><span class="nv">$filename</span><span class="se">\&quot;</span> <span class="se">\&quot;</span><span class="si">${</span><span class="nv">filename</span><span class="p">//foo/bar</span><span class="si">}</span><span class="se">\&quot;</span><span class="p">;</span> <span class="k">done</span> <span class="p">|</span> /bin/bash
+</pre></div>
+</div>
+</div>
+<div class="section" id="ls-find-grep">
+<h2>ls, find, grep</h2>
+<p>List all filenames in directory tree:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -print
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find .
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</pre></div>
+</div>
+<p>List files in reverse chronological order:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -lt
+</pre></div>
+</div>
+<p>List the the most recently modified files in directory tree:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -type f -exec stat --format <span class="s1">&#39;%Y :%y %n&#39;</span> <span class="o">{}</span> <span class="se">\;</span> <span class="p">|</span> sort -nr <span class="p">|</span> cut -d: -f2- <span class="p">|</span> head
+</pre></div>
+</div>
+<p>List files in reverse order by size:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -lS
+</pre></div>
+</div>
+<p>List only filenames:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls -m1
+</pre></div>
+</div>
+<p>Find all files matching  ‘*.c’:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -name <span class="se">\*</span>.c
+</pre></div>
+</div>
+<p>Find directories named ‘mydir’:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -type d -name mydir
+</pre></div>
+</div>
+<p>Search for ‘pattern’ in all .cpp files in ‘mydir’, recursively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep pattern -nr --include<span class="o">=</span><span class="se">\*</span>.cpp mydir
+</pre></div>
+</div>
+<p>Search for ‘pattern’ in all .cpp and .h files in ‘mydir’, recursively:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep pattern -nr --include<span class="o">=</span><span class="se">\*</span>.<span class="o">{</span>cpp,h<span class="o">}</span> mydir
+</pre></div>
+</div>
+<p>Search for ‘pattern’ in all files in current dir, but don’t recurse into subdirectories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -d skip pattern *
+</pre></div>
+</div>
+<p>Replace all occurrences of ‘oldstring’ with ‘newstring’ in all .txt files in directory tree rooted in ‘.’:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -name <span class="s1">&#39;*.txt&#39;</span> -type f -print0 <span class="p">|</span> xargs -0 sed -i <span class="s1">&#39;s|oldstring|newstring|g&#39;</span>
+</pre></div>
+</div>
+<p>Remove all .flac files in directory tree rooted in ‘.’:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find . -name <span class="s1">&#39;*.flac&#39;</span> -type f -print0 <span class="p">|</span> xargs -0 rm
+</pre></div>
+</div>
+<p>Compare 2 directories: print 2 columns of files unique to either directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>comm -3 &lt;<span class="o">(</span>find dir1 -type f -printf <span class="s1">&#39;%f\n&#39;</span> <span class="p">|</span> sort -u<span class="o">)</span> &lt;<span class="o">(</span>find dir2 -type f -printf <span class="s1">&#39;%f\n&#39;</span> <span class="p">|</span> sort -u<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="directories">
+<h2>directories</h2>
+<p>cd into parent dir of currently running bash script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="nv">$0</span><span class="k">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lines-in-files">
+<h2>Lines in files</h2>
+<p>Output Nth line of file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>more +N file <span class="p">|</span> head -n <span class="m">1</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>head -N file <span class="p">|</span> tail -1
+</pre></div>
+</div>
+<p>Count the number of lines in file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wc -l &lt; my_text.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="modify-files">
+<h2>Modify files</h2>
+<p>Remove all blank lines</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat file.txt <span class="p">|</span> sed <span class="s1">&#39;/^\s*$/d&#39;</span> &gt; file2.txt
+</pre></div>
+</div>
+<p>or in-place:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed -i <span class="s1">&#39;/^\s*$/d&#39;</span> file.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="package-management">
+<h2>Package management</h2>
+<div class="section" id="dpkg">
+<h3>dpkg</h3>
+<p>Show (among other info) dependencies of .deb file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dpkg -I package_file.deb
+</pre></div>
+</div>
+<p>Install a .deb file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dpkg -i package_file.deb
+</pre></div>
+</div>
+<p>Uninstall a .deb file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dpkg -r package_file.deb
+</pre></div>
+</div>
+<p>List all installed packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dpkg -l
+</pre></div>
+</div>
+<p>List files provided by package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dpkg -L packagename
+</pre></div>
+</div>
+</div>
+<div class="section" id="pacman">
+<h3>pacman</h3>
+<p>Install a package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Syu package_name
+</pre></div>
+</div>
+<p>Check if a package is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Q package_name
+</pre></div>
+</div>
+<p>Display extensive info about a package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Si package_name
+</pre></div>
+</div>
+<p>Uninstall a package and its orphaned dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Rs package_name
+</pre></div>
+</div>
+<p>Clean pacman cache ( /var/cache/pacman/pkg ):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Scc
+</pre></div>
+</div>
+<p>List all packages from a given repository (here ‘community’ as an example):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>paclist community
+</pre></div>
+</div>
+<p>Print dependency tree of a package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pactree packagename
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="openbox">
+<h2>OpenBox</h2>
+<p>Edit the OpenBox menu:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi ~/.config/openbox/menu.xml
+</pre></div>
+</div>
+<p>Edit the OpenBox settings:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi ~/.config/openbox/rc.xml
+</pre></div>
+</div>
+<p>Go to location of .desktop files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/share/applications
+</pre></div>
+</div>
+<p>Reconfigure OpenBox:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openbox --reconfigure
+</pre></div>
+</div>
+</div>
+<div class="section" id="make-bootable-usb-stick-from-iso-file">
+<h2>Make bootable USB stick from .iso file</h2>
+<dl class="docutils">
+<dt>From:</dt>
+<dd><a class="reference external" href="http://crunchbang.org/forums/viewtopic.php?id=23267">http://crunchbang.org/forums/viewtopic.php?id=23267</a></dd>
+</dl>
+<p>Determine what device your USB is.  With your USB plugged in run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ls -l /dev/disk/by-id/*usb*
+</pre></div>
+</div>
+<p>This should produce output along the lines of:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lrwxrwxrwx <span class="m">1</span> root root  <span class="m">9</span> <span class="m">2010</span>-03-15 <span class="m">22</span>:54 /dev/disk/by-id/usb-_USB_DISK_2.0_077508380189-0:0 -&gt; ../../sdb
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">10</span> <span class="m">2010</span>-03-15 <span class="m">22</span>:54 /dev/disk/by-id/usb-_USB_DISK_2.0_077508380189-0:0-part1 -&gt; ../../sdb1
+</pre></div>
+</div>
+<p>Now cd to where your *.iso is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/downloads
+</pre></div>
+</div>
+<p>Example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>filename.iso <span class="nv">of</span><span class="o">=</span>/dev/usbdevice<span class="p">;</span> sync
+</pre></div>
+</div>
+<p>let’s say the iso is named mini.iso and your USB device is sdb</p>
+<p>Example</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dd <span class="k">if</span><span class="o">=</span>mini.iso <span class="nv">of</span><span class="o">=</span>/dev/sdb<span class="p">;</span> sync
+</pre></div>
+</div>
+</div>
+<div class="section" id="vim">
+<h2>vim</h2>
+<p>Some shortcuts:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Deleting text:
+dd      Delete line
+dw      Delete rest of word, <span class="k">until</span> <span class="o">(</span>but excluding<span class="o">)</span> start of next word
+D       Delete rest of line <span class="o">(</span>including character under cursor<span class="o">)</span>
+d$      <span class="s2">&quot;</span>
+<span class="s2">d0      Delete beginning of line before cursor</span>
+<span class="s2">x       Delete character</span>
+<span class="s2">da(     delete a set of matching parens and everything in them</span>
+<span class="s2">S       substitute line (i.e. replace entire line with an empty line and go to insert mode)</span>
+<span class="s2">:%s/\s\+</span>$<span class="s2">//   delete trailing whitespace on all lines</span>
+
+<span class="s2">Inserting text:</span>
+<span class="s2">i               Insert text before cursor</span>
+<span class="s2">a               Insert text after cursor</span>
+<span class="s2">A               Append text to the end of a line</span>
+<span class="s2">I               Insert text before the first non-blank in the line</span>
+<span class="s2">C               Replace rest of line</span>
+<span class="s2">o               Insert new line above cursor</span>
+<span class="s2">O               Insert new line below cursor</span>
+<span class="s2">ctrl-v&lt;tab&gt;     Insert tab character even when expandtab is on</span>
+
+<span class="s2">:r !ls      Insert output of shell command into text (here: ls)</span>
+
+<span class="s2">Transforming text:</span>
+<span class="s2">ctrl-a    increment number under cursor</span>
+<span class="s2">ctrl-x    decrement number under cursor</span>
+
+<span class="s2">u       undo</span>
+<span class="s2">ctrl-r  redo</span>
+
+<span class="s2">Moving:</span>
+<span class="s2">g;      jump back to last edited position.</span>
+<span class="s2">g_      go to last non-whitespace character on line</span>
+<span class="s2">w       go to start of next word</span>
+<span class="s2">e       go to end of (next) word</span>
+<span class="s2">b       go start of (previous) word</span>
+<span class="s2">W       go to start of next word (words are whitespace-delimited)</span>
+<span class="s2">E       go to end of word (words are whitespace-delimited)</span>
+<span class="s2">B       go start of (previous) word (words are whitespace-delimited)</span>
+<span class="s2">zz  put current line at the center of the screen</span>
+<span class="s2">zz  move current line to the middle of the screen</span>
+<span class="s2">zt  move current line to the top of the screen</span>
+<span class="s2">zb   move current line to the bottom of the screen</span>
+<span class="s2">Ctrl-e  Moves screen up one line</span>
+<span class="s2">Ctrl-y  Moves screen down one line</span>
+<span class="s2">Ctrl-u  Moves screen up ½ page</span>
+<span class="s2">Ctrl-d  Moves screen down ½ page</span>
+<span class="s2">Ctrl-b  Moves screen up one page</span>
+<span class="s2">Ctrl-f  Moves screen down one page</span>
+
+<span class="s2">Selecting pieces of text:</span>
+<span class="s2">vw      select from cursor to start of next word</span>
+<span class="s2">vb      select from cursor to start of word under cursor</span>
+<span class="s2">vaw     select word under cursor</span>
+<span class="s2">vi(     select parens block, parens excluded</span>
+<span class="s2">va(     select parens block, parens included</span>
+<span class="s2">vi&quot;</span>, vi<span class="s1">&#39;, vi[, vi&lt;, vi{     analogous as 2 lines higher</span>
+<span class="s1">va&quot;, va&#39;</span>, va<span class="o">[</span>, va&lt;, va<span class="o">{</span>     analogous as <span class="m">2</span> lines higher
+vit     <span class="k">select</span> text between HTML tags
+vat     <span class="k">select</span> text between HTML tags, together with the tags themselves
+
+File handling:
+:e filename     Open new file in editor
+:e! filename    Open new file in editor, discard buffer
+:e .                    Browse current directory
+:w                      Write buffer
+:w filename     Write buffer to filename
+:q                      Exit vim
+ZZ                      Save buffer and <span class="nb">exit</span> vim
+:x                      <span class="s2">&quot;</span>
+<span class="s2">ZQ                      Discard buffer and exit vim</span>
+<span class="s2">:q!                     &quot;</span>
+
+Searching:
+/searchstring           search <span class="k">for</span> searchstring
+/searchstring<span class="se">\c</span>     <span class="k">case</span>-insensitive search <span class="k">for</span> searchstring
+
+:%s/old/new/g           replace all occurrences of <span class="s1">&#39;old&#39;</span> with <span class="s1">&#39;new&#39;</span>
+:%s/<span class="se">\&lt;</span>old<span class="se">\&gt;</span>/new/g   same, but whole word only
+:%s/old<span class="se">\c</span>/new/g     replace all <span class="k">case</span>-insensitive matches of <span class="s1">&#39;old&#39;</span> with <span class="s1">&#39;new&#39;</span>
+:%s/old/new/gc          replace all occurrences of <span class="s1">&#39;old&#39;</span> with <span class="s1">&#39;new&#39;</span>, confirm each substitution
+:%s/<span class="se">\t</span>/    /g       replace all tabs with <span class="m">4</span> spaces
+
+Tabs:
+:set expandtab
+:set <span class="nv">tabstop</span><span class="o">=</span><span class="m">4</span>
+
+Comment all lines of a block
+Go to the first line, press ctrl-v, <span class="k">select</span> <span class="k">until</span> last line, press I#&lt;Esc&gt;
+
+Reselect block:
+gv
+
+Uncomment all lines of a block
+Go to the first line, press ctrl-v, <span class="k">select</span> <span class="k">until</span> last line, press x
+
+Multi-window:
+Ctrl-w o    Close all windows except current:
+:on        idem
+Ctrl-w q    Close current window
+Ctrl-w p    Switch to previously accessed window:
+
+Colors:
+Show highlight groups with their current color:
+:so <span class="nv">$VIMRUNTIME</span>/syntax/hitest.vim
+</pre></div>
+</div>
+</div>
+<div class="section" id="scp">
+<h2>scp</h2>
+<p>Copy the file “foobar.txt” from the local host to a remote host</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp foobar.txt your_username@remotehost.edu:some/remote/directory
+</pre></div>
+</div>
+<p>Copy the file “foobar.txt” from a remote host to the local host</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp your_username@remotehost.edu:foobar.txt some/local/directory
+</pre></div>
+</div>
+<p>Copy the directory “foo” from the local host to a remote host’s directory “bar”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r foo your_username@remotehost.edu:some/remote/directory/bar
+</pre></div>
+</div>
+<p>Copy the directory “foo” from a remote host to the local host’s directory “bar”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scp -r your_username@remotehost.edu:some/remote/directory/foo bar
+</pre></div>
+</div>
+</div>
+<div class="section" id="apt-get-and-dpkg">
+<h2>apt-get and dpkg</h2>
+<p>Show info about file.deb:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>dpkg -I file.deb
+</pre></div>
+</div>
+</div>
+<div class="section" id="echo-text-and-redirect-to-privileged-file">
+<h2>echo text and redirect to privileged file:</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;some text&#39;</span> <span class="p">|</span> sudo tee -a /etc/some.file
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-stop-enable-disable-daemons">
+<h2>Start/stop/enable/disable daemons</h2>
+<p>Enable the ssh daemon:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>update-rc.d ssh defaults
+</pre></div>
+</div>
+<p>Disable it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>update-rc.d -f ssh remove
+</pre></div>
+</div>
+<p>Start daemon:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo service ssh start
+</pre></div>
+</div>
+<p>Restart daemon:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo service ssh restart
+</pre></div>
+</div>
+<p>Stop daemon:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo service ssh stop
+</pre></div>
+</div>
+</div>
+<div class="section" id="list-of-options-for-setxkbmap">
+<h2>List of options for ‘setxkbmap’:</h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi /usr/share/X11/xkb/rules/base.lst
+</pre></div>
+</div>
+</div>
+<div class="section" id="tmux">
+<h2>tmux</h2>
+<p>Create new session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tmux new -s session-name
+</pre></div>
+</div>
+<p>Detach from session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;CTRL-b&gt; d
+</pre></div>
+</div>
+<p>Attach to first available session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tmux a
+</pre></div>
+</div>
+<p>Attach to specific session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ tmux a -t session-name
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-oracle-java-7-in-debian-wheezy">
+<h2>Install Oracle Java 7 in Debian Wheezy:</h2>
+<p>From: <a class="reference external" href="http://stackoverflow.com/questions/15543603/installing-java-7-oracle-in-debian-via-apt-get">http://stackoverflow.com/questions/15543603/installing-java-7-oracle-in-debian-via-apt-get</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo su
+
+<span class="nb">echo</span> <span class="s2">&quot;deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main&quot;</span> <span class="p">|</span> tee -a /etc/apt/sources.list
+<span class="nb">echo</span> <span class="s2">&quot;deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main&quot;</span> <span class="p">|</span> tee -a /etc/apt/sources.list
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+apt-get update
+apt-get install oracle-java7-installer
+</pre></div>
+</div>
+</div>
+<div class="section" id="git">
+<h2>Git</h2>
+<div class="section" id="web-project-use-github-pages-for-a-live-demo">
+<h3>Web project: use Github Pages for a live demo</h3>
+<p>Source:</p>
+<p><a class="reference external" href="https://help.github.com/articles/creating-project-pages-manually/">https://help.github.com/articles/creating-project-pages-manually/</a></p>
+<p><a class="reference external" href="http://lea.verou.me/2011/10/easily-keep-gh-pages-in-sync-with-master/">http://lea.verou.me/2011/10/easily-keep-gh-pages-in-sync-with-master/</a></p>
+<p>To create a Github Pages presence for your repo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout --orphan gh-pages
+git merge master
+git push origin gh-pages
+git checkout master
+</pre></div>
+</div>
+<p>The demo will be visible at username.github.io/reponame</p>
+<p>To get the demo up-to-date with the master branch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout gh-pages
+git merge master
+git push origin gh-pages
+git checkout master
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

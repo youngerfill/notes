@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exercise 1.01</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../../index.html">notes</a> &#47;
+                <a href="../../index.html">SICP reading notes</a> &#47;
+                <a href="../index.html">Chapter1</a> &#47;
+                <a href=""> Exercise 1.01 </a>
+            </div>
+
+    
+    
+    
+            <div class="browse">
+                        <a href="../index.html" title="Chapter1">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.02/index.html" title="Exercise 1.02">next&gt;</a>
+            </div>
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="exercise-1-01">
+<h1>Exercise 1.01</h1>
+<div class="section" id="question">
+<h2>Question:</h2>
+<p>Below is a sequence of expressions. What is the result printed by the interpreter in response to each expression? Assume that the sequence is to be evaluated in the order in which it is presented.</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span>
+<span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">- </span><span class="mi">9</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">/ </span><span class="mi">6</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="mi">4</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">b</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+    <span class="nv">b</span>
+    <span class="nv">a</span><span class="p">)</span>
+<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">a</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span>
+      <span class="p">((</span><span class="nb">= </span><span class="nv">b</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">6</span> <span class="mi">7</span> <span class="nv">a</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">else </span><span class="mi">25</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">+ </span><span class="mi">2</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="mi">-1</span><span class="p">))</span>
+   <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="answer">
+<h2>Answer:</h2>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="nv">&gt;</span> <span class="mi">10</span>
+<span class="mi">10</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mi">12</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">- </span><span class="mi">9</span> <span class="mi">1</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">6</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="mi">4</span> <span class="mi">6</span><span class="p">))</span>
+<span class="mi">6</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="k">define </span><span class="nv">b</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+<span class="mi">19</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">= </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+<span class="no">#f</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">b</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+    <span class="nv">b</span>
+    <span class="nv">a</span><span class="p">)</span>
+<span class="mi">4</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">a</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span>
+      <span class="p">((</span><span class="nb">= </span><span class="nv">b</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">6</span> <span class="mi">7</span> <span class="nv">a</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">else </span><span class="mi">25</span><span class="p">))</span>
+<span class="mi">16</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">2</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>
+<span class="mi">6</span>
+<span class="nv">&gt;</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
+         <span class="p">((</span><span class="nb">&lt; </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">else </span><span class="mi">-1</span><span class="p">))</span>
+   <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>
+<span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+            <div class="browse">
+                        <a href="../index.html" title="Chapter1">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.02/index.html" title="Exercise 1.02">next&gt;</a>
+            </div>
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

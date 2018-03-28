@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exercise 1.05</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../../index.html">notes</a> &#47;
+                <a href="../../index.html">SICP reading notes</a> &#47;
+                <a href="../index.html">Chapter1</a> &#47;
+                <a href=""> Exercise 1.05 </a>
+            </div>
+
+    
+    
+    
+            <div class="browse">
+                        <a href="../Ex1.04/index.html" title="Exercise 1.04">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.06/index.html" title="Exercise 1.06">next&gt;</a>
+            </div>
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="exercise-1-05">
+<h1>Exercise 1.05</h1>
+<div class="section" id="question">
+<h2>Question:</h2>
+<p>Ben Bitdiddle has invented a test to determine whether the interpreter he is faced with is using applicative-order evaluation or normal-order evaluation. He defines the following two procedures:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">p</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">test</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="mi">0</span>
+      <span class="nv">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then he evaluates the expression</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">test</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">p</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>What behavior will Ben observe with an interpreter that uses applicative-order evaluation? What behavior will he observe with an interpreter that uses normal-order evaluation? Explain your answer. (Assume that the evaluation rule for the special form <code class="docutils literal notranslate"><span class="pre">if</span></code> is the same whether the interpreter is using normal or applicative order: The predicate expression is evaluated first, and the result determines whether to evaluate the consequent or the alternative expression.)</p>
+</div>
+<div class="section" id="answer">
+<h2>Answer:</h2>
+<div class="section" id="applicative-order-evaluation">
+<h3>Applicative-order evaluation:</h3>
+<p>The program gets stuck in an infinite loop.</p>
+<p>When the program evaluates the second operand in the call <code class="docutils literal notranslate"><span class="pre">(test</span> <span class="pre">0</span> <span class="pre">(p))</span></code> it will substitute <code class="docutils literal notranslate"><span class="pre">(p)</span></code> with its definition. As this definition is also <code class="docutils literal notranslate"><span class="pre">(p)</span></code>, the substitution process is endlessly recursive.</p>
+</div>
+<div class="section" id="normal-order-evaluation">
+<h3>Normal-order evaluation:</h3>
+<p>The program returns <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">(test</span> <span class="pre">0</span> <span class="pre">(p))</span></code> is called, its operands are not evaluated immediately. Instead, the procedure <code class="docutils literal notranslate"><span class="pre">test</span></code> is expanded to:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="mi">0</span>
+    <span class="p">(</span><span class="nf">p</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The <em>predicate</em> in the special form <code class="docutils literal notranslate"><span class="pre">if</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>, so the <em>alternative</em> <code class="docutils literal notranslate"><span class="pre">(p)</span></code> is never evaluated and the <em>consequent</em>’s value <code class="docutils literal notranslate"><span class="pre">0</span></code> is returned.</p>
+</div>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+            <div class="browse">
+                        <a href="../Ex1.04/index.html" title="Exercise 1.04">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.06/index.html" title="Exercise 1.06">next&gt;</a>
+            </div>
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

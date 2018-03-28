@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exercise 1.07</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../../index.html">notes</a> &#47;
+                <a href="../../index.html">SICP reading notes</a> &#47;
+                <a href="../index.html">Chapter1</a> &#47;
+                <a href=""> Exercise 1.07 </a>
+            </div>
+
+    
+    
+    
+            <div class="browse">
+                        <a href="../Ex1.06/index.html" title="Exercise 1.06">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                        <span class="invisible">
+                                |
+                        next&gt;</span>
+            </div>
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="exercise-1-07">
+<h1>Exercise 1.07</h1>
+<div class="section" id="background-section-1-1-7-square-roots-by-newton-s-method">
+<h2>Background: Section 1.1.7, Square Roots by Newton’s Method</h2>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">average</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">average</span> <span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">x</span> <span class="nv">guess</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">square</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span> <span class="mf">0.001</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="p">(</span><span class="nf">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+                 <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">sqrt </span><span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nf">sqrt-iter</span> <span class="mf">1.0</span> <span class="nv">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="question">
+<h2>Question:</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">good-enough?</span></code> test used in computing square roots will not be very effective for finding the square roots of very small numbers. Also, in real computers, arithmetic operations are almost always performed with limited precision. This makes our test inadequate for very large numbers. Explain these statements, with examples showing how the test fails for small and large numbers. An alternative strategy for implementing <code class="docutils literal notranslate"><span class="pre">good-enough?</span></code> is to watch how <code class="docutils literal notranslate"><span class="pre">guess</span></code> changes from one iteration to the next and to stop when the change is a very small fraction of the guess. Design a square-root procedure that uses this kind of end test. Does this work better for small and large numbers?</p>
+</div>
+<div class="section" id="answer">
+<h2>Answer:</h2>
+<div class="section" id="for-small-numbers">
+<h3>For small numbers:</h3>
+<p>When we take the <code class="docutils literal notranslate"><span class="pre">sqrt</span></code> of - for example - <code class="docutils literal notranslate"><span class="pre">0.0001</span></code>:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="nv">&gt;</span> <span class="p">(</span><span class="nb">sqrt </span><span class="mf">0.0001</span><span class="p">)</span>
+<span class="mf">0.03230844833048122</span>
+</pre></div>
+</div>
+<p>instead of the expected <code class="docutils literal notranslate"><span class="pre">0.01</span></code> we get <code class="docutils literal notranslate"><span class="pre">0.0323</span> <span class="pre">...</span></code> because the latter’s square is so close to <code class="docutils literal notranslate"><span class="pre">0.0001</span></code> that the difference is less than <code class="docutils literal notranslate"><span class="pre">0.001</span></code> - the error margin used in <code class="docutils literal notranslate"><span class="pre">good-enough?</span></code>.</p>
+<p>If we replace <code class="docutils literal notranslate"><span class="pre">good-enough?</span></code> with:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">square</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">guess</span> <span class="mi">1</span><span class="nv">e4</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>todo</p>
+</div>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+            <div class="browse">
+                        <a href="../Ex1.06/index.html" title="Exercise 1.06">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                        <span class="invisible">
+                                |
+                        next&gt;</span>
+            </div>
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

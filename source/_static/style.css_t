@@ -1,0 +1,242 @@
+<%
+    LinkColor = '#0000C0'
+    HoverLinkColor = '#FFFFFF'
+    HoverLinkBGColor = '#0000C0'
+    LinkVisitedColor = '#000080'
+    LightGrey = '#909090'
+%>
+
+body
+{
+    font-family: sans-serif;
+}
+
+
+#header, #document, #footer, #headerfp, #documentfp, #footerfp
+{
+    margin: 0 auto;
+}
+
+#header, #document, #footer
+{
+    max-width: 70em;
+}
+
+#headerfp, #documentfp, #footerfp
+{
+    max-width: 40em;
+}
+
+a
+{
+    color: ${LinkColor};
+    text-decoration: none;
+}
+
+a:visited
+{
+    color: ${LinkVisitedColor};
+}
+
+a:hover
+{
+    background-color: ${HoverLinkBGColor};
+    color: ${HoverLinkColor};
+}
+
+table
+{
+    table-layout: auto;
+}
+
+table,td,th
+{
+    width : auto;
+}
+
+.timestamp, .tags
+{
+    text-align:right;
+}
+
+.timestamp, .tags, .numpages, .browse, .path, .greytext
+{
+    color: ${LightGrey};
+}
+
+.timestamp, .tags, .numpages
+{
+    font-size:0.85em;
+}
+
+table.pagetable>tbody>tr>td:last-child>a>em
+{
+    font-style: normal;
+    font-size:0.85em;
+}
+
+table.tagstable>tbody>tr>td:last-child
+{
+    text-align : right;
+}
+
+.path
+{
+    float: left;
+}
+
+.browse
+{
+    float: right;
+}
+
+.invisible
+{
+    visibility : hidden;
+}
+
+.nav
+{
+    overflow: auto;
+    margin-bottom: .5em;
+}
+
+#footer, #footerfp
+{
+    text-align:center;
+    margin-top:2em;
+    color:${LightGrey}
+}
+
+.bottomlinks
+{
+    clear: both;
+    font-size:0.85em;
+}
+
+.navbig
+{
+    font-size:1.50em;
+    font-weight:bold;
+}
+
+.slogan
+{
+    font-style: italic;
+}
+
+.myrole
+{
+    color: blue;
+}
+
+.fpintro
+{
+//    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.fpmenu
+{
+//    display: table;
+    float: left;
+    margin-right:8em;
+}
+
+.menuitem
+{
+    display: table-row;
+}
+
+
+.raquo
+{
+    display: table-cell;
+    vertical-align: middle;
+    height: 3.2em;
+    padding-right: 0.5em;
+}
+
+.menulink
+{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+//    outline-color: transparent;
+}
+
+.frontpagepanel
+{
+//    display: block;
+    overflow: auto;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+
+.latestchanges
+{
+    float: left;
+    height: 100%;
+    margin-left: 3em;
+}
+
+.latestchanges a
+{
+    display: table-row;
+}
+
+.latestchanges>p
+{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.lctitle
+{
+    display: table-cell;
+    vertical-align: middle;
+    height: 3.5em;
+}
+
+table.frontpagetable, table.frontpagetable td
+{
+    border-style : none;
+}
+
+
+table.pagetable, table.pagetable td, table.pagetable th, table.tagstable, table.tagstable td, table.tagstable th
+{
+    border-style : none;
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+table>colgroup>col
+{
+    width: auto;
+}
+
+table.pagetable th
+{
+    text-align: left;
+}
+
+table.pagetable col
+{
+    width: auto;
+}
+
+/* Styles for code blocks with syntaxt highlighting (pygments) */
+div.highlight
+{
+    margin: 1em;
+    padding: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-style: solid;
+    border-color: ${LightGrey};
+    border-width: 1px;
+}

@@ -1,0 +1,3 @@
+source/sicp/index: sicp
+source/cheatsheet/index: bash
+source/pygmentstest/index: bash	C++	Python

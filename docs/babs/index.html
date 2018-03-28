@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>babs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../index.html">notes</a> &#47;
+                <a href=""> babs </a>
+            </div>
+
+    
+    
+    
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="babs">
+<h1>babs</h1>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#babs" id="id1">babs</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#environment-variables" id="id3">Environment variables</a></li>
+<li><a class="reference internal" href="#files" id="id4">Files</a><ul>
+<li><a class="reference internal" href="#babs-build-system" id="id5"><code class="docutils literal notranslate"><span class="pre">babs</span></code> build system</a><ul>
+<li><a class="reference internal" href="#folder-structure" id="id6">Folder structure</a><ul>
+<li><a class="reference internal" href="#module-common-mk" id="id7">module_common.mk</a></li>
+<li><a class="reference internal" href="#make-common-mk" id="id8">make_common.mk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-babs" id="id9">Using <code class="docutils literal notranslate"><span class="pre">babs</span></code></a><ul>
+<li><a class="reference internal" href="#a-minimal-example" id="id10">A minimal example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p><code class="docutils literal notranslate"><span class="pre">babs</span></code>, (an acronym for “<strong>b</strong>abs: <strong>a</strong> <strong>b</strong>uild <strong>s</strong>ystem”) is a set of Makefiles meant to easily compile &amp; link a set of interdependent
+modules, containing C/C++ source code, binaries like object files, static or dynamic libraries, etc …</p>
+</div>
+<div class="section" id="environment-variables">
+<h2>Environment variables</h2>
+<p>In order to do its work, <code class="docutils literal notranslate"><span class="pre">babs</span></code> needs 3 environment variables:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">BABS_DIR</span></code> : the directory where the <code class="docutils literal notranslate"><span class="pre">babs</span></code> build system is located.</li>
+<li><code class="docutils literal notranslate"><span class="pre">SOURCE_DIR</span></code> : the directory where the source modules are located.</li>
+<li><code class="docutils literal notranslate"><span class="pre">BUILD_DIR</span></code> : the directory where all target and intermediate files are saved during the build process.</li>
+</ul>
+<p>These variables are currently set by sourcing a script before running <code class="docutils literal notranslate"><span class="pre">make</span></code>. Ideally, they should be set while running``make``.</p>
+</div>
+<div class="section" id="files">
+<h2>Files</h2>
+<div class="section" id="babs-build-system">
+<h3><code class="docutils literal notranslate"><span class="pre">babs</span></code> build system</h3>
+<div class="section" id="folder-structure">
+<h4>Folder structure</h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">babs</span><span class="o">/</span>
+    <span class="n">module_common</span><span class="o">.</span><span class="n">mk</span>
+    <span class="n">make_common</span><span class="o">.</span><span class="n">mk</span>
+    <span class="n">platform</span><span class="o">/</span>
+        <span class="n">platform</span><span class="o">.</span><span class="n">mk</span>
+        <span class="n">windows</span><span class="o">/</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">mk</span>
+            <span class="n">definitions</span><span class="o">.</span><span class="n">mk</span>
+            <span class="n">libstdc</span><span class="o">++-</span><span class="mf">6.</span><span class="n">dll</span>
+            <span class="n">libgcc_s_dw2</span><span class="o">-</span><span class="mf">1.</span><span class="n">dll</span>
+        <span class="n">linux</span><span class="o">/</span>
+            <span class="n">rules</span><span class="o">.</span><span class="n">mk</span>
+            <span class="n">definitions</span><span class="o">.</span><span class="n">mk</span>
+<span class="n">source</span><span class="o">/</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">mk</span>
+    <span class="n">setenv</span>
+</pre></div>
+</div>
+<div class="section" id="module-common-mk">
+<h5>module_common.mk</h5>
+</div>
+<div class="section" id="make-common-mk">
+<h5>make_common.mk</h5>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-babs">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">babs</span></code></h2>
+<div class="section" id="a-minimal-example">
+<h3>A minimal example</h3>
+</div>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

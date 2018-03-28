@@ -1,0 +1,26 @@
+Exercise 1.10
+=============
+
+Question:
+---------
+
+todo
+
+.. highlight:: scheme
+
+::
+
+    (+ 1 2)
+
+
+Answer:
+-------
+
+todo
+
+.. highlight:: scheme
+
+::
+
+    (+ 1 2)
+

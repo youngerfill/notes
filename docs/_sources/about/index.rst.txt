@@ -1,0 +1,4 @@
+About
+=====
+
+Some personal notes.

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exercise 1.04</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../../index.html">notes</a> &#47;
+                <a href="../../index.html">SICP reading notes</a> &#47;
+                <a href="../index.html">Chapter1</a> &#47;
+                <a href=""> Exercise 1.04 </a>
+            </div>
+
+    
+    
+    
+            <div class="browse">
+                        <a href="../Ex1.03/index.html" title="Exercise 1.03">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.05/index.html" title="Exercise 1.05">next&gt;</a>
+            </div>
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2017-11-27 08:32:51 UTC
+            </div>
+    
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="exercise-1-04">
+<h1>Exercise 1.04</h1>
+<div class="section" id="question">
+<h2>Question:</h2>
+<p>Observe that our model of evaluation allows for combinations whose operators are compound expressions. Use this observation to describe the behavior of the following procedure:</p>
+<div class="highlight-scheme notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">a-plus-abs-b</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+    <span class="p">((</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">b</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">+</span> <span class="nv">-</span><span class="p">)</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="answer">
+<h2>Answer:</h2>
+<p>In the body of <code class="docutils literal notranslate"><span class="pre">a-plus-abs-b</span> <span class="pre">a</span> <span class="pre">b</span></code>, the expression <code class="docutils literal notranslate"><span class="pre">(if</span> <span class="pre">(&gt;</span> <span class="pre">b</span> <span class="pre">0)</span> <span class="pre">+</span> <span class="pre">-)</span></code> evaluates to an arithmetic operation (either <code class="docutils literal notranslate"><span class="pre">+</span></code> or <code class="docutils literal notranslate"><span class="pre">-</span></code>, depending on the sign of <code class="docutils literal notranslate"><span class="pre">b</span></code>’s actual argument). The interpreter obtains a primitive procedure that it applies to the arguments replacing the formal parameters <code class="docutils literal notranslate"><span class="pre">a</span></code> and  <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+            <div class="browse">
+                        <a href="../Ex1.03/index.html" title="Exercise 1.03">&lt;previous</a> | <a href="../../index.html" title="SICP reading notes">TOC</a>
+
+                                |
+                        <a href="../Ex1.05/index.html" title="Exercise 1.05">next&gt;</a>
+            </div>
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

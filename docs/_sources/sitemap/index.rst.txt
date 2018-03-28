@@ -1,0 +1,25 @@
+Sitemap
+=======
+
+- :doc:`notes</index>`
+        - :doc:`/about/index`
+        - :doc:`/babs/index`
+        - :doc:`/cheatsheet/index`
+        - :doc:`/Minecraft/index`
+        - :doc:`/pageindex/index`
+        - :doc:`/pygmentstest/index`
+        - :doc:`/sicp/index`
+            - :doc:`/sicp/Chapter1/index`
+                - :doc:`/sicp/Chapter1/Ex1.01/index`
+                - :doc:`/sicp/Chapter1/Ex1.02/index`
+                - :doc:`/sicp/Chapter1/Ex1.03/index`
+                - :doc:`/sicp/Chapter1/Ex1.04/index`
+                - :doc:`/sicp/Chapter1/Ex1.05/index`
+                - :doc:`/sicp/Chapter1/Ex1.06/index`
+                - :doc:`/sicp/Chapter1/Ex1.07/index`
+        - :doc:`/sitemap/index`
+        - :doc:`/tags/index`
+            - :doc:`/tags/bash/index`
+            - :doc:`/tags/C++/index`
+            - :doc:`/tags/Python/index`
+            - :doc:`/tags/sicp/index`
