@@ -20,4 +20,3 @@ source/sitemap
 source/Minecraft
 source/pygmentstest
 source/pageindex
-source/static

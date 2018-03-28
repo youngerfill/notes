@@ -18,7 +18,6 @@ Sitemap
                 - :doc:`/sicp/Chapter1/Ex1.06/index`
                 - :doc:`/sicp/Chapter1/Ex1.07/index`
         - :doc:`/sitemap/index`
-        - :doc:`/static/index`
         - :doc:`/tags/index`
             - :doc:`/tags/bash/index`
             - :doc:`/tags/C++/index`

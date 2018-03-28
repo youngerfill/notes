@@ -30,9 +30,11 @@ exitOnError "build site"
 cp -r $buildDir/html/* docs/
 exitOnError "copy release files"
 
+# commit
 gtcommit -A "$(fullts)"
 exitOnError "gtcommit"
 
+# push
 git push
 exitOnError "git push"
 
