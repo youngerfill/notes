@@ -1,4 +1,4 @@
-:doc:`/about/index`	:timestamp:`2018-03-28 23:11:49`	
+:doc:`/about/index`	:timestamp:`2018-03-28 23:50:27`	
 :doc:`/cheatsheet/index`	:timestamp:`2017-12-09 11:25:44`	:doc:`/tags/bash/index` 
 :doc:`/sicp/index`	:timestamp:`2017-11-27 09:32:51`	:doc:`/tags/sicp/index` 
 :doc:`/pygmentstest/index`	:timestamp:`2017-11-27 09:32:51`	:doc:`/tags/bash/index` :greytext:`|` :doc:`/tags/C++/index` :greytext:`|` :doc:`/tags/Python/index` 
