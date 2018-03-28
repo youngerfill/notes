@@ -10,4 +10,5 @@
     ./pygmentstest/index
     ./sicp/index
     ./sitemap/index
+    ./static/index
     ./tags/index
