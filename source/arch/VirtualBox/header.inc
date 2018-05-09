@@ -1,1 +1,1 @@
-:tags: arch VirtualBox
+:tags: arch|VirtualBox

@@ -1,6 +1,6 @@
 arch	source/arch/VirtualBox/index	source/arch/vps/index
-arch VirtualBox	source/arch/VirtualBox/index
 bash	source/cheatsheet/index	source/pygmentstest/index
 C++	source/pygmentstest/index
 Python	source/pygmentstest/index
 sicp	source/sicp/index
+VirtualBox	source/arch/VirtualBox/index

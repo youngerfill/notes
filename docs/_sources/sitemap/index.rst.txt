@@ -23,8 +23,8 @@ Sitemap
         - :doc:`/sitemap/index`
         - :doc:`/tags/index`
             - :doc:`/tags/arch/index`
-            - :doc:`/tags/arch_VirtualBox/index`
             - :doc:`/tags/bash/index`
             - :doc:`/tags/C++/index`
             - :doc:`/tags/Python/index`
             - :doc:`/tags/sicp/index`
+            - :doc:`/tags/VirtualBox/index`
