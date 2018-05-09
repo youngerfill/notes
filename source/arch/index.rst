@@ -1,0 +1,4 @@
+arch
+====
+
+.. include:: toctree.inc

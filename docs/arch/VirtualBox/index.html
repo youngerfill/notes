@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Installing Arch Linux in VirtualBox</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../index.html">notes</a> &#47;
+                <a href="../index.html">arch</a> &#47;
+                <a href=""> Installing Arch Linux in VirtualBox </a>
+            </div>
+
+    
+    
+    
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2018-05-09 21:41:56 UTC
+            </div>
+    
+        <div class="tags">
+            <a href="../../tags/arch_VirtualBox/index.html" title="tag"> arch VirtualBox </a>
+        </div>
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="installing-arch-linux-in-virtualbox">
+<h1>Installing Arch Linux in VirtualBox</h1>
+<div class="section" id="arch-linux-iso-file">
+<h2>1. Arch Linux .iso file</h2>
+<dl class="docutils">
+<dt>archlinux-2018.02.01-x86_64.iso</dt>
+<dd>from: <a class="reference external" href="https://archlinux.cu.be/iso/2018.02.01/archlinux-2018.02.01-x86_64.iso">https://archlinux.cu.be/iso/2018.02.01/archlinux-2018.02.01-x86_64.iso</a>
+saved at: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dd>
+</dl>
+</div>
+<div class="section" id="virtualbox">
+<h2>2. VirtualBox:</h2>
+<dl class="docutils">
+<dt>. This document applies to v5.2.6</dt>
+<dd>. Help/About VirtualBox
+. File/Check for updates</dd>
+<dt>. in File/Preferences:</dt>
+<dd>. General: check vm default location: “M:vm”</dd>
+<dt>. in File/Host Network Manager:</dt>
+<dd><dl class="first last docutils">
+<dt>. Create host-only network</dt>
+<dd>. Set the IP address, e.g. : 192.168.236.2
+. Network mask : 255.255.255.0</dd>
+</dl>
+</dd>
+<dt>. new vm</dt>
+<dd><dl class="first docutils">
+<dt>. name: yeba</dt>
+<dd>. make sure “M:vmyeba” doesn’t exist before creation of VM</dd>
+</dl>
+<p>. type/version: arch linux 64 bit
+. memory 4096 MB
+. create virtual HD</p>
+<p>. press “create”</p>
+<p class="last">. File size 30 GB
+. VDI
+. dynamically allocated</p>
+</dd>
+</dl>
+<p>. “yeba” (powered off) appears in list of VMs</p>
+<p>. yeba Settings:</p>
+<blockquote>
+<div><p>. General/Advanced: shared clipboard: bidirectional</p>
+<dl class="docutils">
+<dt>. System/Motherboard:</dt>
+<dd><p class="first">. Boot order: Optical, Harddisk
+. Extended features:</p>
+<blockquote class="last">
+<div>. disable I/O APIC
+. disable EFI
+. enable HW clock in UTC time</div></blockquote>
+</dd>
+<dt>. Storage:</dt>
+<dd><dl class="first last docutils">
+<dt>. IDE secondary master: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dt>
+<dd>. don’t enable LiveCD/DVD</dd>
+<dt>. SATA: add hard disk</dt>
+<dd>. new hard disk
+. VDI, dynamically allocated, 100 GB
+. M:vmhddLargeData.vdi</dd>
+</dl>
+</dd>
+<dt>. Network:</dt>
+<dd>. Adapter 1 : NAT
+. Adapter 2 : Host-only, name: the one just created in File/Preferences</dd>
+<dt>. Shared Folders:</dt>
+<dd>. “C:Bertvmpub”
+. “M:mshare”
+. auto-mount, full access</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="from-livecd-to-working-root-login">
+<h2>3. From LiveCD to working root login:</h2>
+<p>start VM</p>
+<p>loadkeys be-latin1</p>
+<dl class="docutils">
+<dt>Network should work:</dt>
+<dd>curl www.google.com</dd>
+</dl>
+<p>timedatectl set-ntp true</p>
+<p>fdisk -l /dev/sda</p>
+<dl class="docutils">
+<dt>fdisk /dev/sda</dt>
+<dd>–&gt; n : new partition
+–&gt; p : primary partition
+–&gt; enter : partition #1
+–&gt; enter : default first sector
+–&gt; enter : default last sector
+–&gt; w write partition table</dd>
+</dl>
+<p>mkfs.ext4 /dev/sda1</p>
+<p>mount /dev/sda1 /mnt</p>
+<p>Make sure nearest mirror is first in the list:</p>
+<blockquote>
+<div>vi /etc/pacman.d/mirrorlist</div></blockquote>
+<p>pacstrap /mnt base</p>
+<p>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</p>
+<p>arch-chroot /mnt</p>
+<p>ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime</p>
+<p>hwclock –systohc –utc</p>
+<p>echo en_US.UTF-8 UTF-8 &gt; /etc/locale.gen</p>
+<p>locale-gen</p>
+<p>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</p>
+<p>echo KEYMAP=be-latin1 &gt; /etc/vconsole.conf</p>
+<p>echo yeba &gt; /etc/hostname</p>
+<dl class="docutils">
+<dt>vi /etc/hosts</dt>
+<dd>–&gt; add:
+127.0.0.1 yeba.localdomain yeba</dd>
+</dl>
+<p>passwd</p>
+<p>pacman -Syu grub</p>
+<p>grub-install –target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg</p>
+<p>exit</p>
+<p>shutdown now</p>
+<p>in settings of VM: Remove disk from virtual drive</p>
+<p>start VM</p>
+<blockquote>
+<div><strong>**</strong> snapshot : Fresh install <strong>**</strong></div></blockquote>
+</div>
+<div class="section" id="a-one-user-system">
+<h2>4. A one-user system:</h2>
+<p>useradd -m bert</p>
+<p>groupadd sudoers</p>
+<p>usermod -aG sudoers bert</p>
+<p>passwd bert</p>
+<dl class="docutils">
+<dt>enable NW-ing:</dt>
+<dd>systemctl enable <a class="reference external" href="mailto:dhcpcd&#37;&#52;&#48;enp0s3&#46;service">dhcpcd<span>&#64;</span>enp0s3<span>&#46;</span>service</a>
+systemctl start <a class="reference external" href="mailto:dhcpcd&#37;&#52;&#48;enp0s3&#46;service">dhcpcd<span>&#64;</span>enp0s3<span>&#46;</span>service</a></dd>
+<dt>check connection:</dt>
+<dd>curl www.google.com</dd>
+</dl>
+<p>pacman -Syu sudo</p>
+<p>allow group ‘sudoers’ to use sudo (in conf file):</p>
+<p>visudo</p>
+<dl class="docutils">
+<dt>–&gt; add line:</dt>
+<dd>%sudoers    ALL=(ALL) ALL</dd>
+</dl>
+<p>log out of root session:</p>
+<blockquote>
+<div>exit</div></blockquote>
+<p>log back in as bert</p>
+<p>test if sudo:</p>
+<blockquote>
+<div>sudo -v</div></blockquote>
+<p>(after entering password should not output anything if all is well)</p>
+<blockquote>
+<div><strong>**</strong> snapshot : User bert, NW OK <strong>**</strong></div></blockquote>
+</div>
+<div class="section" id="virtualbox-guest-additions">
+<h2>5. Virtualbox Guest Additions</h2>
+<p>Make sure your version of Virtualbox matches the version of the Guest Additions:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>. VirtualBox:</dt>
+<dd>. Help/About VirtualBox
+. File/Check for updates</dd>
+<dt>. Arch Linux guest OS:</dt>
+<dd>. pacman -Ss virtualbox-guest-utils</dd>
+</dl>
+</div></blockquote>
+<p>Install guest additions &amp; hwinfo</p>
+<blockquote>
+<div><p>sudo pacman -Syu virtualbox-guest-utils hwinfo</p>
+<p>During installation, choose package:</p>
+<blockquote>
+<div>virtualbox-guest-modules-arch</div></blockquote>
+<p>sudo systemctl enable vboxservice.service</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>output:</dt>
+<dd>created symlink /etc/systemd/system/multi-user.target.wants/vboxservice.service
+-&gt; /usr/lib/systemd/system/vboxservice.service.</dd>
+</dl>
+</div></blockquote>
+<p>sudo systemctl start vboxservice.service</p>
+<p>sudo reboot now
+(login)</p>
+</div></blockquote>
+<p>Grant access to shared folders</p>
+<blockquote>
+<div>sudo chmod 755 /media
+sudo usermod -aG vboxsf bert</div></blockquote>
+<p>Logout and -in for the latter change to take effect</p>
+<blockquote>
+<div><strong>**</strong> snapshot : vbox guest additions <strong>**</strong></div></blockquote>
+</div>
+<div class="section" id="lots-of-packages">
+<h2>6. Lots of packages</h2>
+<p>Install some necessary packages:</p>
+<blockquote>
+<div>sudo pacman -Syu base-devel clang git vim tmux time zip unzip dialog wget dos2unix hwinfo openssh knockd lighttpd ffmpeg python-mako python-sphinx asciidoc</div></blockquote>
+<p>Install xorg-related packages:</p>
+<blockquote>
+<div>sudo pacman -Syu xorg-server xorg-xinit xorg-apps xorg-apps xorg-xfontsel xorg-fonts-misc unclutter dmenu ttf-dejavu ttf-inconsolata adobe-source-code-pro-fonts</div></blockquote>
+<p>The 2 previous commands can be combined by pasting all package names in a text file in a vboxsf shared folder and running:</p>
+<blockquote>
+<div>sudo pacman -Syu - &lt; /media/sf_pub/packages.txt</div></blockquote>
+<p>Make the ‘vi’ command start ‘vim’:</p>
+<blockquote>
+<div><p>sudo mv /usr/bin/vi /usr/bin/vi_BAK
+sudo ln -s /usr/bin/vim /usr/bin/vi</p>
+<blockquote>
+<div><p>Install dwm from AUR:</p>
+<blockquote>
+<div><p>curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz</a>
+curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz</a></p>
+<p>tar xzvf st.tar.gz
+tar xzvf dwm.tar.gz</p>
+<p>cd st &amp;&amp; makepkg -si &amp;&amp; cd -
+cd dwm &amp;&amp; makepkg -si &amp;&amp; cd -</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>**</strong> snapshot : Packages installed <strong>**</strong></p>
+</div></blockquote>
+</div>
+<div class="section" id="set-up-xorg-dwm">
+<h2>7. Set up xorg, dwm</h2>
+<p>vim ~/.xinitrc</p>
+<blockquote>
+<div>VBoxClient –display –clipboard
+setxkbmap be
+exec dwm</div></blockquote>
+<p>startx</p>
+<blockquote>
+<div><p>dwm starts up
+alt-enter to open st session
+show all possible screen resolutions:</p>
+<blockquote>
+<div>xrandr</div></blockquote>
+<dl class="docutils">
+<dt>dwm -v</dt>
+<dd>dwm-6.1</dd>
+<dt>st -v</dt>
+<dd>st 0.7</dd>
+</dl>
+<p>The latter versions are identical to the effie setup</p>
+<p>shutdown vm</p>
+<p>Windows Command Prompt:</p>
+<blockquote>
+<div>VBoxManage setextradata “yeba” “CustomVideoMode1” “1600x900x24”</div></blockquote>
+<p>start vm</p>
+<dl class="docutils">
+<dt>sudoedit /etc/default/grub</dt>
+<dd>GRUB_CMDLINE_LINUX_DEFAULT=”quiet video=1600x900”</dd>
+</dl>
+<p>sudo grub-mkconfig -o /boot/grub/grub.cfg</p>
+<p>Auto-login on TTY1:</p>
+<blockquote>
+<div><p>sudo systemctl edit <a class="reference external" href="mailto:getty&#37;&#52;&#48;tty1">getty<span>&#64;</span>tty1</a></p>
+<p>add lines:</p>
+<blockquote>
+<div>[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty –autologin bert –noclear %I $TERM</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="personal-tools-and-config">
+<h2>8. Personal tools and config</h2>
+<blockquote>
+<div><p>mkdir ~/tools &amp;&amp; cd ~/tools
+git clone <a class="reference external" href="https://github.com/bergoid/lswrappers.git">https://github.com/bergoid/lswrappers.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/rabot.git">https://github.com/bergoid/rabot.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/gt.git">https://github.com/bergoid/gt.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/preppy.git">https://github.com/bergoid/preppy.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/avtools.git">https://github.com/bergoid/avtools.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/dotfiles.git">https://github.com/bergoid/dotfiles.git</a>
+dotfiles/install_dotfiles</p>
+<p>Do manually:</p>
+<blockquote>
+<div>~/tools/misc
+~/.gtpresets
+~/.ssh</div></blockquote>
+</div></blockquote>
+<p>youtube-dl without pacman:</p>
+<blockquote>
+<div>sudo curl -L <a class="reference external" href="https://yt-dl.org/downloads/latest/youtube-dl">https://yt-dl.org/downloads/latest/youtube-dl</a> -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl</div></blockquote>
+<p>sudo pacman -Syu knockd reflector</p>
+<blockquote>
+<div><p>Update mirrorlist:</p>
+<blockquote>
+<div>sudo reflector –age 6 –fastest 64 –protocol https –sort rate –save /etc/pacman.d/mirrorlist</div></blockquote>
+<dl class="docutils">
+<dt>Set remote URLS to ssh protocol:</dt>
+<dd>git remote set-url origin github_bergoid:bergoid/anthos.git
+etc …</dd>
+</dl>
+<p><strong>**</strong> snapshot : Xorg, dwm, personal tools &amp; config <strong>**</strong></p>
+<dl class="docutils">
+<dt>Copy from effie:</dt>
+<dd>~/notes.txt
+~/cheatsheet.txt</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="set-up-webserver-and-host-guest-connectivity">
+<h2>9. Set up webserver and host-&gt;guest connectivity</h2>
+<dl class="docutils">
+<dt>/home/bert/prj/webserver contains:</dt>
+<dd>etc/lighttpd.conf
+www/index.html</dd>
+<dt>sudo -i</dt>
+<dd>cd /srv &amp;&amp; rm -rf *
+mkdir log
+ln -s /home/bert/prj/webserver repo
+ln -sf /etc/lighttpd.conf /srv/repo/etc/lighttpd.conf
+chmod 755 /home/bert</dd>
+<dt>/home/bert/prj/webserver/etc/lighttpd.conf:</dt>
+<dd><dl class="first docutils">
+<dt>server.modules = (</dt>
+<dd>“mod_access”,
+“mod_accesslog”,
+)</dd>
+</dl>
+<p>server.port = 80
+server.username = “http”
+server.groupname = “http”
+server.document-root = “/srv/repo/www”
+server.errorlog = “/srv/log/error.log”
+accesslog.filename = “srv/log/access.log”
+dir-listing.activate = “enable”
+index-file.names = ( “index.html” )
+mimetype.assign = (</p>
+<blockquote class="last">
+<div>“.html” =&gt; “text/html”,
+“.txt” =&gt; “text/plain”,
+“.css” =&gt; “text/css”,
+“.js” =&gt; “application/x-javascript”,
+“.jpg” =&gt; “image/jpeg”,
+“.jpeg” =&gt; “image/jpeg”,
+“.gif” =&gt; “image/gif”,
+“.png” =&gt; “image/png”,
+“” =&gt; “application/octet-stream”
+)</div></blockquote>
+</dd>
+<dt>/home/bert/prj/webserver/www/index.html:</dt>
+<dd>Hello there!</dd>
+</dl>
+<p>sudo systemctl start lighttpd.service
+sudo systemctl status lighttpd.service
+sudo systemctl enable lighttpd.service</p>
+<p>curl localhost</p>
+<p>Configure static IP address 192.168.236.20 and gateway 192.168.236.2:</p>
+<p>sudo ip link set enp0s8 down</p>
+<dl class="docutils">
+<dt>sudoedit /etc/netctl/enp0s8</dt>
+<dd>Description=’yeba static ip address’
+Interface=enp0s8
+Connection=ethernet
+IP=static
+Address=(‘192.168.236.20/24’)
+Gateway=(‘192.168.236.2’)</dd>
+</dl>
+<p>sudo netctl start enp0s8
+sudo netctl enable enp0s8</p>
+<p>–&gt; Visit 192.168.236.20 with browser on host OS</p>
+<blockquote>
+<div><strong>**</strong> CURRENT STATE <strong>**</strong></div></blockquote>
+</div>
+<div class="section" id="further-config">
+<h2>10. Further config</h2>
+<p>TODO:</p>
+<p>dwm monocle mode</p>
+<p>autostart tmux 2 panes in every st terminal</p>
+<p>tmux scrollback</p>
+<p>change xorg clipboard</p>
+<p>set vim yank buffer to xorg clipboard</p>
+<p>bidir clipboard host/guest OK?</p>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

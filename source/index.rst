@@ -1,7 +1,7 @@
 .. include:: toctree.inc
 
+:doc:`/arch/index`
+:doc:`/arch/VirtualBox/index`
+:doc:`/arch/vps/index`
 :doc:`/about/index`
 :doc:`/cheatsheet/index`
-:doc:`/sicp/index`
-:doc:`/pygmentstest/index`
-:doc:`/sicp/Chapter1/index`

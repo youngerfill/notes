@@ -3,6 +3,9 @@ Sitemap
 
 - :doc:`notes</index>`
         - :doc:`/about/index`
+        - :doc:`/arch/index`
+            - :doc:`/arch/VirtualBox/index`
+            - :doc:`/arch/vps/index`
         - :doc:`/babs/index`
         - :doc:`/cheatsheet/index`
         - :doc:`/Minecraft/index`
@@ -19,6 +22,8 @@ Sitemap
                 - :doc:`/sicp/Chapter1/Ex1.07/index`
         - :doc:`/sitemap/index`
         - :doc:`/tags/index`
+            - :doc:`/tags/arch/index`
+            - :doc:`/tags/arch_VirtualBox/index`
             - :doc:`/tags/bash/index`
             - :doc:`/tags/C++/index`
             - :doc:`/tags/Python/index`

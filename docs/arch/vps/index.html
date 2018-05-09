@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Installing Arch Linux on VPS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../index.html">notes</a> &#47;
+                <a href="../index.html">arch</a> &#47;
+                <a href=""> Installing Arch Linux on VPS </a>
+            </div>
+
+    
+    
+    
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2018-05-09 21:38:04 UTC
+            </div>
+    
+        <div class="tags">
+            <a href="../../tags/arch/index.html" title="tag"> arch </a>
+        </div>
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="installing-arch-linux-on-vps">
+<h1>Installing Arch Linux on VPS</h1>
+<div class="section" id="base-system">
+<h2>1. Base system</h2>
+<dl class="docutils">
+<dt>Create VPS, pick Debian 9.3 as OS.</dt>
+<dd><dl class="first last docutils">
+<dt>–&gt; didn’t work 2nd time, stuck in 1st reboot</dt>
+<dd>picked centos and worked</dd>
+</dl>
+</dd>
+</dl>
+<p>Copy bootstrap files from M:vmisovps2arch to M:msharevps2arch
+and cd into the latter folder.</p>
+<p>Upload bootstrap files to the newly created VPS:</p>
+<blockquote>
+<div>scp * <a class="reference external" href="mailto:root&#37;&#52;&#48;IP_ADDRESS">root<span>&#64;</span>IP_ADDRESS</a>:</div></blockquote>
+<p>Log into the VPS</p>
+<p>chmod +x vps2arch
+mv * / &amp;&amp; cd /
+./vps2arch
+echo HOSTNAME &gt; /etc/hostname
+sync; reboot -f</p>
+</div>
+<div class="section" id="create-user">
+<h2>2. Create user</h2>
+<p>useradd -m bert
+groupadd sudoers
+usermod -aG sudoers bert
+passwd bert</p>
+<p>pacman -Syu sudo vim ufw knockd lighttpd git</p>
+<p>allow group ‘sudoers’ to use sudo (in conf file):</p>
+<blockquote>
+<div>echo ‘%sudoers ALL=(ALL) ALL’ &gt; /etc/sudoers</div></blockquote>
+<p>use ‘vim’ as ‘vi’:</p>
+<blockquote>
+<div>mv /usr/bin/vi /usr/bin/vi_BAK &amp;&amp; ln -s /usr/bin/vim /usr/bin/vi</div></blockquote>
+</div>
+<div class="section" id="sshd-config">
+<h2>3. sshd config</h2>
+<p>On the client:</p>
+<blockquote>
+<div>ssh-copy-id <a class="reference external" href="mailto:bert&#37;&#52;&#48;IP_ADDRESS">bert<span>&#64;</span>IP_ADDRESS</a></div></blockquote>
+<p>On the server:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>vi /etc/ssh/sshd_config</dt>
+<dd>LogLevel VERBOSE
+PermitRootLogin no
+PubkeyAuthentication yes
+PasswordAuthentication no
+AuthorizedKeysFile .ssh/authorized_keys
+ChallengeResponseAuthentication no
+UsePAM yes
+AllowUsers bert</dd>
+</dl>
+</div></blockquote>
+<p>Add 5s delay to failed login attempts:</p>
+<blockquote>
+<div>bash -c “echo auth optional pam_faildelay.so delay=5000000 &gt;&gt; /etc/pam.d/system-login”</div></blockquote>
+<p>reboot needed for future ufw config:</p>
+<blockquote>
+<div>reboot now</div></blockquote>
+</div>
+<div class="section" id="ufw-knockd">
+<h2>4. ufw, knockd</h2>
+<p>ssh <a class="reference external" href="mailto:bert&#37;&#52;&#48;IP_ADDRESS">bert<span>&#64;</span>IP_ADDRESS</a></p>
+<dl class="docutils">
+<dt>sudo -i</dt>
+<dd><p class="first">ufw default deny
+ufw allow 22
+ufw allow 80,443/tcp
+ufw enable</p>
+<dl class="docutils">
+<dt>vi /etc/knockd.conf</dt>
+<dd><dl class="first last docutils">
+<dt>[options]</dt>
+<dd>logfile = /var/log/knockd.log</dd>
+<dt>[SSH]</dt>
+<dd>sequence    = PORT1, PORT2, …, PORTN
+seq_timeout = 5
+start_command = ufw allow from %IP% to any port 22
+tcpflags    = syn
+cmd_timeout   = 10
+stop_command  = ufw delete allow from %IP% to any port 22</dd>
+</dl>
+</dd>
+</dl>
+<p>systemctl enable ufw.service
+systemctl start ufw.service</p>
+<p>systemctl enable knockd.service
+systemctl start knockd.service</p>
+<p class="last">ufw delete allow 22</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="customization">
+<h2>5. Customization</h2>
+<p>Create dotfiles &amp; tools:</p>
+<blockquote>
+<div>mkdir ~/tools &amp;&amp; cd ~/tools
+git clone <a class="reference external" href="https://github.com/bergoid/lswrappers.git">https://github.com/bergoid/lswrappers.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/rabot.git">https://github.com/bergoid/rabot.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/gt.git">https://github.com/bergoid/gt.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/preppy.git">https://github.com/bergoid/preppy.git</a>
+git clone <a class="reference external" href="https://github.com/bergoid/dotfiles.git">https://github.com/bergoid/dotfiles.git</a>
+dotfiles/install_dotfiles
+echo hostnameColour=27 &gt; ~/.localConfig</div></blockquote>
+<p>Customize root env:</p>
+<blockquote>
+<div><p>sudo -i
+sudo -i</p>
+<blockquote>
+<div>ln -s /home/bert/.tmux.conf .tmux.conf
+ln -s /home/bert/tools/dotfiles/.vim/ .vim
+ln -s /home/bert/tools/ tools
+ln -s /home/bert/.bash_profile .bash_profile
+ln -s /home/bert/.bashrc .bashrc</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="spigot-server">
+<h2>6. spigot server</h2>
+<dl class="docutils">
+<dt>Enable AUR:</dt>
+<dd>sudo pacman -Syu base base-devel
+mkcd ~/aur</dd>
+<dt>Install JRE:</dt>
+<dd>git clone <a class="reference external" href="https://aur.archlinux.org/jre.git">https://aur.archlinux.org/jre.git</a>
+cd jre
+makepkg -si</dd>
+</dl>
+<p>Install bukkit/spigot:</p>
+<blockquote>
+<div>mkcd ~/mc
+curl “<a class="reference external" href="https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar">https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar</a>” -o BuildTools.jar
+java -jar BuildTools.jar</div></blockquote>
+<p>sudo pacman -Syu tmux dialog</p>
+<dl class="docutils">
+<dt>vi /etc/locale.gen</dt>
+<dd>–&gt; Uncomment:  ‘en_US.UTF-8 UTF-8’</dd>
+</dl>
+<p>locale-gen</p>
+<p>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</p>
+<p>sudo ufw allow 24680</p>
+<p>Removed jre9:</p>
+<p>sudo pacman -Rs jre</p>
+<dl class="docutils">
+<dt>Install jre8:</dt>
+<dd><p class="first">cd ~/aur
+git clone <a class="reference external" href="https://aur.archlinux.org/jre8.git">https://aur.archlinux.org/jre8.git</a>
+cd jre8
+makepkg -si</p>
+<p class="last"><strong>**</strong> CURRENT STATE <strong>**</strong></p>
+</dd>
+</dl>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

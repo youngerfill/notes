@@ -3,6 +3,7 @@
     :hidden:
 
     ./about/index
+    ./arch/index
     ./babs/index
     ./cheatsheet/index
     ./Minecraft/index

@@ -9,11 +9,16 @@ source/sicp/Chapter1/Ex1.01
 source/sicp/Chapter1/Ex1.07
 source/about
 source/cheatsheet
+source/tags/arch_VirtualBox
 source/tags/sicp
 source/tags/C++
+source/tags/arch
 source/tags
 source/tags/bash
 source/tags/Python
+source/arch/VirtualBox
+source/arch
+source/arch/vps
 source/babs
 source
 source/sitemap
