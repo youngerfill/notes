@@ -418,6 +418,9 @@ sudo netctl enable enp0s8
 
 --> Visit 192.168.236.20 with browser on host OS
 
+
+    sudo pacman -Syu dosfstools
+
     ****** CURRENT STATE ******
 
 
