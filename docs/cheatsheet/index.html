@@ -23,7 +23,7 @@
         </div>
         
             <div class="timestamp" title="Last modified">
-                2018-05-13 17:33:11 UTC
+                2018-05-13 19:21:14 UTC
             </div>
     
         <div class="tags">
@@ -108,31 +108,27 @@
 <h2>Arch Linux guest VM in VirtualBox:</h2>
 <div class="section" id="restore-networking">
 <h3>Restore networking:</h3>
-<dl class="docutils">
-<dt>::</dt>
-<dd>sudo ip link set enp0s8 down &amp;&amp; sudo ip link set enp0s8 up &amp;&amp; curl www.google.com</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ip link <span class="nb">set</span> enp0s8 down <span class="o">&amp;&amp;</span> sudo ip link <span class="nb">set</span> enp0s8 up <span class="o">&amp;&amp;</span> curl www.google.com
+</pre></div>
+</div>
 </div>
 <div class="section" id="mount-usb-drive">
 <h3>Mount USB drive</h3>
 <p>Before inserting the USB drive, show list of devices:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>sudo lsblk -f</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo lsblk -f
+</pre></div>
+</div>
 <p>Insert USB drive, and select device in VirtualBox GUI menu ( Devices &gt; USB &gt; … )</p>
 <p>In VM, show list of devices again to find the DEVICENAME of the new device:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>sudo lsblk -f</dd>
-</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo lsblk -f
+</pre></div>
+</div>
 <p>Mount the device:</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd>sudo -i
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -i
 mkdir /mnt/usbstick
-mount /dev/DEVICENAME /mnt/usbstick</dd>
-</dl>
+mount /dev/DEVICENAME /mnt/usbstick
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="wget">

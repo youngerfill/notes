@@ -27,28 +27,28 @@ Arch Linux guest VM in VirtualBox:
 
 Restore networking:
 -------------------
-
 ::
+
     sudo ip link set enp0s8 down && sudo ip link set enp0s8 up && curl www.google.com
 
 Mount USB drive
 ---------------
 
 Before inserting the USB drive, show list of devices:
-
 ::
+
     sudo lsblk -f
 
 Insert USB drive, and select device in VirtualBox GUI menu ( Devices > USB > ... )
 
 In VM, show list of devices again to find the DEVICENAME of the new device:
-
 ::
+
     sudo lsblk -f
 
 Mount the device:
-
 ::
+
     sudo -i
     mkdir /mnt/usbstick
     mount /dev/DEVICENAME /mnt/usbstick

@@ -1,4 +1,4 @@
-:doc:`/cheatsheet/index`	:timestamp:`2018-05-13 19:33:11`	:doc:`/tags/bash/index` 
+:doc:`/cheatsheet/index`	:timestamp:`2018-05-13 21:21:14`	:doc:`/tags/bash/index` 
 :doc:`/arch/index`	:timestamp:`2018-05-09 23:42:37`	
 :doc:`/arch/VirtualBox/index`	:timestamp:`2018-05-09 23:41:56`	:doc:`/tags/arch/index` :greytext:`|` :doc:`/tags/VirtualBox/index` 
 :doc:`/arch/vps/index`	:timestamp:`2018-05-09 23:38:04`	:doc:`/tags/arch/index` 
