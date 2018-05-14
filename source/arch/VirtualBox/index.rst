@@ -418,10 +418,11 @@ sudo netctl enable enp0s8
 
 --> Visit 192.168.236.20 with browser on host OS
 
+Tools for rp0w:
 
-    sudo pacman -Syu dosfstools
+    sudo pacman -Syu dosfstools wpa_supplicant
 
-    ****** CURRENT STATE ******
+****** CURRENT STATE ******
 
 
 10. Further config
