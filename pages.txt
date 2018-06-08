@@ -23,5 +23,7 @@ source/babs
 source
 source/sitemap
 source/Minecraft
+source/rp
+source/rp/rp0w
 source/pygmentstest
 source/pageindex

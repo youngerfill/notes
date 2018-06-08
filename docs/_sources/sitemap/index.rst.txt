@@ -11,6 +11,8 @@ Sitemap
         - :doc:`/Minecraft/index`
         - :doc:`/pageindex/index`
         - :doc:`/pygmentstest/index`
+        - :doc:`/rp/index`
+            - :doc:`/rp/rp0w/index`
         - :doc:`/sicp/index`
             - :doc:`/sicp/Chapter1/index`
                 - :doc:`/sicp/Chapter1/Ex1.01/index`
