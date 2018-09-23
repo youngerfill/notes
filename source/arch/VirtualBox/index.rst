@@ -239,23 +239,17 @@ The 2 previous commands can be combined by pasting all package names in a text f
 
     sudo pacman -Syu - < /media/sf_pub/packages.txt
 
-Make the 'vi' command start 'vim':
 
-    sudo mv /usr/bin/vi /usr/bin/vi_BAK
-    sudo ln -s /usr/bin/vim /usr/bin/vi
+Install dwm from AUR:
 
+    curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz
+    curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz
 
+    tar xzvf st.tar.gz
+    tar xzvf dwm.tar.gz
 
-            Install dwm from AUR:
-
-                curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz
-                curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz
-
-                tar xzvf st.tar.gz
-                tar xzvf dwm.tar.gz
-
-                cd st && makepkg -si && cd -
-                cd dwm && makepkg -si && cd -
+    cd st && makepkg -si && cd -
+    cd dwm && makepkg -si && cd -
 
     ****** snapshot : Packages installed ******
 
@@ -421,6 +415,11 @@ sudo netctl enable enp0s8
 Tools for rp0w:
 
     sudo pacman -Syu dosfstools wpa_supplicant
+
+Tools for React development:
+
+    sudo pacman -Syu npm
+    sudo npm install -g create-react-app
 
 ****** CURRENT STATE ******
 

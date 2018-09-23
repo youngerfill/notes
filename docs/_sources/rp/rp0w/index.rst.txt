@@ -18,7 +18,7 @@ Raspberry Pi Zero W
 Create an Arch Linux ARM system
 -------------------------------
 
-TODO
+TODO : chroot binfmt qemu
 
 
 Partition Micro SD Card
@@ -70,4 +70,6 @@ https://ladvien.com/installing-arch-linux-raspberry-pi-zero-w/
 
 https://wiki.debian.org/QemuUserEmulation
 
+http://blog.thijsbroenink.com/2015/10/emulate-file-system-with-different-architecture/
 
+https://raspberrypi.stackexchange.com/questions/165/emulation-on-a-linux-pc

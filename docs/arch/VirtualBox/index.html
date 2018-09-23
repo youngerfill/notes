@@ -24,7 +24,7 @@
         </div>
         
             <div class="timestamp" title="Last modified">
-                2018-05-14 07:15:48 UTC
+                2018-09-20 08:59:45 UTC
             </div>
     
         <div class="tags">
@@ -238,12 +238,7 @@ sudo usermod -aG vboxsf bert</div></blockquote>
 <p>The 2 previous commands can be combined by pasting all package names in a text file in a vboxsf shared folder and running:</p>
 <blockquote>
 <div>sudo pacman -Syu - &lt; /media/sf_pub/packages.txt</div></blockquote>
-<p>Make the ‘vi’ command start ‘vim’:</p>
-<blockquote>
-<div><p>sudo mv /usr/bin/vi /usr/bin/vi_BAK
-sudo ln -s /usr/bin/vim /usr/bin/vi</p>
-<blockquote>
-<div><p>Install dwm from AUR:</p>
+<p>Install dwm from AUR:</p>
 <blockquote>
 <div><p>curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz</a>
 curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz</a></p>
@@ -251,8 +246,6 @@ curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/au
 tar xzvf dwm.tar.gz</p>
 <p>cd st &amp;&amp; makepkg -si &amp;&amp; cd -
 cd dwm &amp;&amp; makepkg -si &amp;&amp; cd -</p>
-</div></blockquote>
-</div></blockquote>
 <p><strong>**</strong> snapshot : Packages installed <strong>**</strong></p>
 </div></blockquote>
 </div>
@@ -401,6 +394,10 @@ sudo netctl enable enp0s8</p>
 <p>Tools for rp0w:</p>
 <blockquote>
 <div>sudo pacman -Syu dosfstools wpa_supplicant</div></blockquote>
+<p>Tools for React development:</p>
+<blockquote>
+<div>sudo pacman -Syu npm
+sudo npm install -g create-react-app</div></blockquote>
 <p><strong>**</strong> CURRENT STATE <strong>**</strong></p>
 </div>
 <div class="section" id="further-config">
