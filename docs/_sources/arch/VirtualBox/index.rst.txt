@@ -12,69 +12,71 @@ archlinux-2018.02.01-x86_64.iso
 2. VirtualBox:
 ==============
 
-. This document applies to v5.2.6
-    . Help/About VirtualBox
-    . File/Check for updates
+- This document applies to v5.2.6
+   - Help/About VirtualBox
+   - File/Check for updates
 
-. in File/Preferences:
-    . General: check vm default location: "M:\vm"
-. in File/Host Network Manager:
-    . Create host-only network
-        . Set the IP address, e.g. : 192.168.236.2
-        . Network mask : 255.255.255.0
+- in File/Preferences:
+   - General: check vm default location: "M:\vm"
 
-. new vm
-    . name: yeba
-        . make sure "M:\vm\yeba" doesn't exist before creation of VM
-    . type/version: arch linux 64 bit
-    . memory 4096 MB
-    . create virtual HD
+- in File/Host Network Manager:
+   - Create host-only network
+      - Set the IP address, e.g. : 192.168.236.2
+      - Network mask : 255.255.255.0
 
-    . press "create"
+- new vm
+   - name: yeba
+      - make sure "M:\vm\yeba" doesn't exist before creation of VM
+   - type/version: arch linux 64 bit
+   - memory 4096 MB
+   - create virtual HD
 
-    . File size 30 GB
-    . VDI
-    . dynamically allocated
+   - press "create"
 
-. "yeba" (powered off) appears in list of VMs
+   - File size 30 GB
+   - VDI
+   - dynamically allocated
 
-. yeba Settings:
+- "yeba" (powered off) appears in list of VMs
 
-    . General/Advanced: shared clipboard: bidirectional
+- yeba Settings:
 
-    . System/Motherboard:
-        . Boot order: Optical, Harddisk
-        . Extended features:
-            . disable I/O APIC
-            . disable EFI
-            . enable HW clock in UTC time
+   - General/Advanced: shared clipboard: bidirectional
 
-    . Storage:
-        . IDE secondary master: "M:\vm\iso\archlinux-2018.02.01-x86_64.iso"
-            . don't enable LiveCD/DVD
-        . SATA: add hard disk
-            . new hard disk
-            . VDI, dynamically allocated, 100 GB
-            . M:\vm\hdd\LargeData.vdi
+   - System/Motherboard:
+      - Boot order: Optical, Harddisk
+      - Extended features:
+         - disable I/O APIC
+         - disable EFI
+         - enable HW clock in UTC time
 
-    . Network:
-        . Adapter 1 : NAT
-        . Adapter 2 : Host-only, name: the one just created in File/Preferences
+      - Storage:
+         - IDE secondary master: "M:\vm\iso\archlinux-2018.02.01-x86_64.iso"
+            - don't enable LiveCD/DVD
+         - SATA: add hard disk
+            - new hard disk
+            - VDI, dynamically allocated, 100 GB
+            - M:\vm\hdd\LargeData.vdi
 
-    . Shared Folders:
-        . "C:\Bert\vm\pub"
-        . "M:\mshare"
-        . auto-mount, full access
+      - Network:
+         - Adapter 1 : NAT
+         - Adapter 2 : Host-only, name: the one just created in File/Preferences
+
+      - Shared Folders:
+         - "C:\\Bert\\vm\\pub"
+         - "M:\\mshare"
+         - auto-mount, full access
 
 
 3. From LiveCD to working root login:
 =====================================
 
 start VM
-
-loadkeys be-latin1
+::
+   loadkeys be-latin1
 
 Network should work:
+::
     curl www.google.com
 
 timedatectl set-ntp true
@@ -414,12 +416,19 @@ sudo netctl enable enp0s8
 
 Tools for rp0w:
 
-    sudo pacman -Syu dosfstools wpa_supplicant
+    sudo pacman -Syu dosfstools wpa_supplicant qemu-headless qemu-headless-arch-extra
 
 Tools for React development:
 
     sudo pacman -Syu npm
     sudo npm install -g create-react-app
+
+AUR helper:
+
+sudo -i
+   git clone https://aur.archlinux.org/pakku.git
+   cd pakku
+   makepkg -si
 
 ****** CURRENT STATE ******
 

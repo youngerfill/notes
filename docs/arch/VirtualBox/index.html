@@ -24,7 +24,7 @@
         </div>
         
             <div class="timestamp" title="Last modified">
-                2018-09-20 08:59:45 UTC
+                2018-11-18 20:17:34 UTC
             </div>
     
         <div class="tags">
@@ -48,74 +48,145 @@ saved at: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dd>
 </div>
 <div class="section" id="virtualbox">
 <h2>2. VirtualBox:</h2>
-<dl class="docutils">
-<dt>. This document applies to v5.2.6</dt>
-<dd>. Help/About VirtualBox
-. File/Check for updates</dd>
-<dt>. in File/Preferences:</dt>
-<dd>. General: check vm default location: “M:vm”</dd>
-<dt>. in File/Host Network Manager:</dt>
-<dd><dl class="first last docutils">
-<dt>. Create host-only network</dt>
-<dd>. Set the IP address, e.g. : 192.168.236.2
-. Network mask : 255.255.255.0</dd>
-</dl>
-</dd>
-<dt>. new vm</dt>
-<dd><dl class="first docutils">
-<dt>. name: yeba</dt>
-<dd>. make sure “M:vmyeba” doesn’t exist before creation of VM</dd>
-</dl>
-<p>. type/version: arch linux 64 bit
-. memory 4096 MB
-. create virtual HD</p>
-<p>. press “create”</p>
-<p class="last">. File size 30 GB
-. VDI
-. dynamically allocated</p>
+<ul>
+<li><dl class="first docutils">
+<dt>This document applies to v5.2.6</dt>
+<dd><ul class="first last simple">
+<li>Help/About VirtualBox</li>
+<li>File/Check for updates</li>
+</ul>
 </dd>
 </dl>
-<p>. “yeba” (powered off) appears in list of VMs</p>
-<p>. yeba Settings:</p>
+</li>
+<li><dl class="first docutils">
+<dt>in File/Preferences:</dt>
+<dd><ul class="first last simple">
+<li>General: check vm default location: “M:vm”</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>in File/Host Network Manager:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>Create host-only network</dt>
+<dd><ul class="first last">
+<li>Set the IP address, e.g. : 192.168.236.2</li>
+<li>Network mask : 255.255.255.0</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>new vm</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>name: yeba</dt>
+<dd><ul class="first last">
+<li>make sure “M:vmyeba” doesn’t exist before creation of VM</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>type/version: arch linux 64 bit</li>
+<li>memory 4096 MB</li>
+<li>create virtual HD</li>
+<li>press “create”</li>
+<li>File size 30 GB</li>
+<li>VDI</li>
+<li>dynamically allocated</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">“yeba” (powered off) appears in list of VMs</p>
+</li>
+<li><p class="first">yeba Settings:</p>
 <blockquote>
-<div><p>. General/Advanced: shared clipboard: bidirectional</p>
-<dl class="docutils">
-<dt>. System/Motherboard:</dt>
-<dd><p class="first">. Boot order: Optical, Harddisk
-. Extended features:</p>
-<blockquote class="last">
-<div>. disable I/O APIC
-. disable EFI
-. enable HW clock in UTC time</div></blockquote>
+<div><ul class="simple">
+<li>General/Advanced: shared clipboard: bidirectional</li>
+<li><dl class="first docutils">
+<dt>System/Motherboard:</dt>
+<dd><ul class="first last">
+<li>Boot order: Optical, Harddisk</li>
+<li><dl class="first docutils">
+<dt>Extended features:</dt>
+<dd><ul class="first last">
+<li>disable I/O APIC</li>
+<li>disable EFI</li>
+<li>enable HW clock in UTC time</li>
+</ul>
 </dd>
-<dt>. Storage:</dt>
-<dd><dl class="first last docutils">
-<dt>. IDE secondary master: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dt>
-<dd>. don’t enable LiveCD/DVD</dd>
-<dt>. SATA: add hard disk</dt>
-<dd>. new hard disk
-. VDI, dynamically allocated, 100 GB
-. M:vmhddLargeData.vdi</dd>
 </dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>IDE secondary master: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dt>
+<dd><ul class="first last">
+<li>don’t enable LiveCD/DVD</li>
+</ul>
 </dd>
-<dt>. Network:</dt>
-<dd>. Adapter 1 : NAT
-. Adapter 2 : Host-only, name: the one just created in File/Preferences</dd>
-<dt>. Shared Folders:</dt>
-<dd>. “C:Bertvmpub”
-. “M:mshare”
-. auto-mount, full access</dd>
 </dl>
+</li>
+<li><dl class="first docutils">
+<dt>SATA: add hard disk</dt>
+<dd><ul class="first last">
+<li>new hard disk</li>
+<li>VDI, dynamically allocated, 100 GB</li>
+<li>M:vmhddLargeData.vdi</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Network:</dt>
+<dd><ul class="first last">
+<li>Adapter 1 : NAT</li>
+<li>Adapter 2 : Host-only, name: the one just created in File/Preferences</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Shared Folders:</dt>
+<dd><ul class="first last">
+<li>“C:\Bert\vm\pub”</li>
+<li>“M:\mshare”</li>
+<li>auto-mount, full access</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div></blockquote>
+</li>
+</ul>
 </div>
 <div class="section" id="from-livecd-to-working-root-login">
 <h2>3. From LiveCD to working root login:</h2>
 <p>start VM</p>
-<p>loadkeys be-latin1</p>
-<dl class="docutils">
-<dt>Network should work:</dt>
-<dd>curl www.google.com</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loadkeys</span> <span class="n">be</span><span class="o">-</span><span class="n">latin1</span>
+</pre></div>
+</div>
+<p>Network should work:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
 <p>timedatectl set-ntp true</p>
 <p>fdisk -l /dev/sda</p>
 <dl class="docutils">
@@ -393,11 +464,18 @@ sudo netctl enable enp0s8</p>
 <p>–&gt; Visit 192.168.236.20 with browser on host OS</p>
 <p>Tools for rp0w:</p>
 <blockquote>
-<div>sudo pacman -Syu dosfstools wpa_supplicant</div></blockquote>
+<div>sudo pacman -Syu dosfstools wpa_supplicant qemu-headless qemu-headless-arch-extra</div></blockquote>
 <p>Tools for React development:</p>
 <blockquote>
 <div>sudo pacman -Syu npm
 sudo npm install -g create-react-app</div></blockquote>
+<p>AUR helper:</p>
+<dl class="docutils">
+<dt>sudo -i</dt>
+<dd>git clone <a class="reference external" href="https://aur.archlinux.org/pakku.git">https://aur.archlinux.org/pakku.git</a>
+cd pakku
+makepkg -si</dd>
+</dl>
 <p><strong>**</strong> CURRENT STATE <strong>**</strong></p>
 </div>
 <div class="section" id="further-config">

@@ -23,7 +23,7 @@
         </div>
         
             <div class="timestamp" title="Last modified">
-                2018-05-13 19:21:14 UTC
+                2018-11-04 19:09:52 UTC
             </div>
     
         <div class="tags">
@@ -575,7 +575,19 @@ Don’t write any output to nohup.out.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Q package_name
 </pre></div>
 </div>
-<p>Display extensive info about a package:</p>
+<p>List all files owned by an installed package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Ql package_name
+</pre></div>
+</div>
+<p>Find package that owns a given file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Qo file_path
+</pre></div>
+</div>
+<p>Display info about an installed package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Qi package_name
+</pre></div>
+</div>
+<p>Display info about a package:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pacman -Si package_name
 </pre></div>
 </div>

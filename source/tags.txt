@@ -1,0 +1,6 @@
+arch	arch/VirtualBox/index	arch/vps/index
+bash	cheatsheet/index	pygmentstest/index
+C++	pygmentstest/index
+Python	pygmentstest/index
+sicp	sicp/index
+VirtualBox	arch/VirtualBox/index

@@ -610,7 +610,22 @@ Check if a package is installed:
 
     pacman -Q package_name
 
-Display extensive info about a package:
+List all files owned by an installed package:
+::
+
+    pacman -Ql package_name
+
+Find package that owns a given file
+::
+
+    pacman -Qo file_path
+
+Display info about an installed package:
+::
+
+    pacman -Qi package_name
+
+Display info about a package:
 ::
 
     pacman -Si package_name

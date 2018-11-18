@@ -1,3 +1,11 @@
+source/source/tags/sicp
+source/source/tags/VirtualBox
+source/source/tags/C++
+source/source/tags/arch
+source/source/tags
+source/source/tags/bash
+source/source/tags/Python
+source/source
 source/sicp
 source/sicp/Chapter1/Ex1.05
 source/sicp/Chapter1/Ex1.06
@@ -7,6 +15,7 @@ source/sicp/Chapter1
 source/sicp/Chapter1/Ex1.04
 source/sicp/Chapter1/Ex1.01
 source/sicp/Chapter1/Ex1.07
+source/docs
 source/about
 source/cheatsheet
 source/tags/sicp
@@ -16,6 +25,7 @@ source/tags/arch
 source/tags
 source/tags/bash
 source/tags/Python
+source/android
 source/arch/VirtualBox
 source/arch
 source/arch/vps

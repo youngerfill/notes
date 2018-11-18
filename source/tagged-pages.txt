@@ -1,0 +1,5 @@
+sicp/index: sicp
+cheatsheet/index: bash
+arch/VirtualBox/index: arch	VirtualBox
+arch/vps/index: arch
+pygmentstest/index: bash	C++	Python

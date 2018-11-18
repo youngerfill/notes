@@ -6,6 +6,36 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
+function showHelp
+{
+cat << DOCSTRING
+Usage: $(basename "$0") [local]
+
+'$(basename "$0")' builds the anthos source code found in the 'source' directory
+adjacent to this script, (re-)creating a 'docs' directory with the output files
+and releasing the output to a local copy of the static website.
+
+If the optional argument 'local' is not specified, the script goes on to commit
+and push all changes to the remote git repository.
+
+See also: 'anthos'
+DOCSTRING
+}
+
+# TODO : upgrade this script to an anthos script (anthos-release ?)
+
+# anthos-release ROOT_DIR [LOCALCOPY_DIR] [local]
+
+checkForHelp $1
+
+require anthos
+
+localCopy="/media/sf_mshare/notes/"
+
+# cd into script's parent dir
+cd $(dirname $(readlink -f $0))
+exitOnError "cd into parent dir"
+
 # Construct path to build dir
 buildDir="$HOME/build/$(stripBaseDir $PWD $HOME)"
 exitOnError "buildDir"
@@ -18,10 +48,6 @@ exitOnError "rm -rf $buildDir"
 rm -rf docs/*
 exitOnError "clean docs"
 
-# cd into script's parent dir
-cd $(dirname $(readlink -f $0))
-exitOnError "cd into parent dir"
-
 # Build site
 anthos source
 exitOnError "build site"
@@ -29,6 +55,22 @@ exitOnError "build site"
 # Copy release files into release dir
 cp -r $buildDir/html/* docs/
 exitOnError "copy release files"
+
+# Delete previous local copy
+rm -rf /media/sf_mshare/notes/*
+exitOnError "clean local copy"
+
+# Update local copy
+cp -r docs/* "$localCopy"
+exitOnError "copy release files to local copy"
+
+echo "Local copy updated at: $localCopy"
+
+# Exit here if "local" is specified
+if [ "$1" = "local" ]; then
+    echo TEST
+    exit
+fi
 
 # commit
 gtcommit -A "$(fullts)"
@@ -38,9 +80,4 @@ exitOnError "gtcommit"
 git push
 exitOnError "git push"
 
-# Update local copy
-rm -rf /media/sf_mshare/notes/*
-exitOnError "clean local copy"
-
-cp -r docs/* /media/sf_mshare/notes/
-exitOnError "copy release files to local copy"
+echo "Remote copy updated"

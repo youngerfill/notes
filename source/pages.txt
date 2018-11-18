@@ -1,0 +1,6 @@
+source/tags/sicp
+source/tags/VirtualBox
+source/tags/C++
+source/tags/arch
+source/tags/bash
+source/tags/Python

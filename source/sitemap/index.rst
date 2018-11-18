@@ -3,11 +3,13 @@ Sitemap
 
 - :doc:`notes</index>`
         - :doc:`/about/index`
+        - :doc:`/android/index`
         - :doc:`/arch/index`
             - :doc:`/arch/VirtualBox/index`
             - :doc:`/arch/vps/index`
         - :doc:`/babs/index`
         - :doc:`/cheatsheet/index`
+        - :doc:`/docs/index`
         - :doc:`/Minecraft/index`
         - :doc:`/pageindex/index`
         - :doc:`/pygmentstest/index`
@@ -23,6 +25,14 @@ Sitemap
                 - :doc:`/sicp/Chapter1/Ex1.06/index`
                 - :doc:`/sicp/Chapter1/Ex1.07/index`
         - :doc:`/sitemap/index`
+        - :doc:`/source/index`
+            - :doc:`/source/tags/index`
+                - :doc:`/source/tags/arch/index`
+                - :doc:`/source/tags/bash/index`
+                - :doc:`/source/tags/C++/index`
+                - :doc:`/source/tags/Python/index`
+                - :doc:`/source/tags/sicp/index`
+                - :doc:`/source/tags/VirtualBox/index`
         - :doc:`/tags/index`
             - :doc:`/tags/arch/index`
             - :doc:`/tags/bash/index`
