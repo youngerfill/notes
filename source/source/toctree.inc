@@ -1,4 +1,0 @@
-.. toctree::
-    :titlesonly:
-
-    ./tags/index

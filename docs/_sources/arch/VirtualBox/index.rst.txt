@@ -73,10 +73,12 @@ archlinux-2018.02.01-x86_64.iso
 
 start VM
 ::
+
    loadkeys be-latin1
 
 Network should work:
 ::
+
     curl www.google.com
 
 timedatectl set-ntp true

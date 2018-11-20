@@ -2,9 +2,6 @@
 Cheat Sheet
 ===========
 
-.. highlight:: bash
-
-
 .. contents::
    :backlinks: none
 

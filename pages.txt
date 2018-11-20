@@ -1,11 +1,3 @@
-source/source/tags/sicp
-source/source/tags/VirtualBox
-source/source/tags/C++
-source/source/tags/arch
-source/source/tags
-source/source/tags/bash
-source/source/tags/Python
-source/source
 source/sicp
 source/sicp/Chapter1/Ex1.05
 source/sicp/Chapter1/Ex1.06

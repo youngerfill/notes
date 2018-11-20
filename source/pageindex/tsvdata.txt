@@ -1,8 +1,6 @@
-:doc:`/source/tags/index`	:timestamp:`2018-11-18 21:30:16`	
+:doc:`/cheatsheet/index`	:timestamp:`2018-11-20 16:24:12`	:doc:`/tags/bash/index` 
+:doc:`/arch/VirtualBox/index`	:timestamp:`2018-11-20 16:19:07`	:doc:`/tags/arch/index` :greytext:`|` :doc:`/tags/VirtualBox/index` 
 :doc:`/docs/index`	:timestamp:`2018-11-18 21:30:15`	
-:doc:`/source/index`	:timestamp:`2018-11-18 21:29:27`	
-:doc:`/arch/VirtualBox/index`	:timestamp:`2018-11-18 21:17:34`	:doc:`/tags/arch/index` :greytext:`|` :doc:`/tags/VirtualBox/index` 
-:doc:`/cheatsheet/index`	:timestamp:`2018-11-04 20:09:52`	:doc:`/tags/bash/index` 
 :doc:`/android/index`	:timestamp:`2018-10-07 20:51:54`	
 :doc:`/rp/rp0w/index`	:timestamp:`2018-06-11 09:28:32`	
 :doc:`/rp/index`	:timestamp:`2018-06-08 23:40:46`	

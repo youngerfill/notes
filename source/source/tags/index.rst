@@ -1,4 +1,0 @@
-tags
-====
-
-.. include:: toctree.inc

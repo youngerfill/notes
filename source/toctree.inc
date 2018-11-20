@@ -14,5 +14,4 @@
     ./rp/index
     ./sicp/index
     ./sitemap/index
-    ./source/index
     ./tags/index

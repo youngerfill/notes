@@ -147,7 +147,7 @@ html_use_smartypants = True
 
 # This value determines the text for the permalink; it defaults to "¶".
 # Set it to None or the empty string to disable permalinks.
-html_add_permalinks = None
+html_add_permalinks = ''
 
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {}
