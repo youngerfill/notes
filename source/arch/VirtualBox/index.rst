@@ -81,61 +81,107 @@ Network should work:
 
     curl www.google.com
 
-timedatectl set-ntp true
+Syncronize the system clock with NTP
+::
 
-fdisk -l /dev/sda
+   timedatectl set-ntp true
 
-fdisk /dev/sda
-    --> n : new partition
-    --> p : primary partition
-    --> enter : partition #1
-    --> enter : default first sector
-    --> enter : default last sector
-    --> w write partition table
+Create partition table
+::
 
+   fdisk -l /dev/sda
 
-mkfs.ext4 /dev/sda1
+   fdisk /dev/sda
+       --> n : new partition
+       --> p : primary partition
+       --> enter : partition #1
+       --> enter : default first sector
+       --> enter : default last sector
+       --> w write partition table
 
-mount /dev/sda1 /mnt
+Format the partition
+::
 
-Make sure nearest mirror is first in the list:
+   mkfs.ext4 /dev/sda1
+
+Mount the partition
+::
+
+   mount /dev/sda1 /mnt
+
+Make sure nearest mirror is first in the list
+::
 
     vi /etc/pacman.d/mirrorlist
 
-pacstrap /mnt base
+Install the 'base' package group
+::
 
-genfstab -U /mnt >> /mnt/etc/fstab
+   pacstrap /mnt base
 
-arch-chroot /mnt
+Create an fstab file
+::
 
-ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+   genfstab -U /mnt >> /mnt/etc/fstab
 
-hwclock --systohc --utc
+'chroot' into the newly created system
+::
 
-echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+   arch-chroot /mnt
 
-locale-gen
+Set the timezone
+::
 
-echo LANG=en_US.UTF-8 > /etc/locale.conf
+   ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime
 
-echo KEYMAP=be-latin1 > /etc/vconsole.conf
+Use UTC in hardware clock. Initialize the hardware clock from
+current system time.
+::
 
-echo yeba > /etc/hostname
+   hwclock --systohc --utc
 
-vi /etc/hosts
-    --> add:
-    127.0.0.1 yeba.localdomain yeba
+Use US locale
+::
 
-passwd
+   echo en_US.UTF-8 UTF-8 > /etc/locale.gen
+   locale-gen
+   echo LANG=en_US.UTF-8 > /etc/locale.conf
 
-pacman -Syu grub
+Use Belgian keymap
+::
 
-grub-install --target=i386-pc /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+   echo KEYMAP=be-latin1 > /etc/vconsole.conf
 
-exit
+Set hostname
+::
 
-shutdown now
+   echo yeba > /etc/hostname
+
+Set localhost alias
+::
+
+   vi /etc/hosts
+
+In /etc/hosts, add:
+::
+
+   127.0.0.1 yeba.localdomain yeba
+
+Set password
+::
+
+   passwd
+
+Install boot loader 'grub'
+::
+
+   pacman -Syu grub
+   grub-install --target=i386-pc /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
+
+Leave chroot environment and shutdown VM
+::
+   exit
+   shutdown now
 
 in settings of VM: Remove disk from virtual drive
 
@@ -147,37 +193,49 @@ start VM
 4. A one-user system:
 =====================
 
-useradd -m bert
+Add a non-root user, with 'sudo' rights
+::
 
-groupadd sudoers
-
-usermod -aG sudoers bert
-
-passwd bert
+   useradd -m bert
+   groupadd sudoers
+   usermod -aG sudoers bert
+   passwd bert
 
 enable NW-ing:
+::
+
     systemctl enable dhcpcd@enp0s3.service
     systemctl start dhcpcd@enp0s3.service
 
 check connection:
+::
+
     curl www.google.com
 
-pacman -Syu sudo
+Install 'sudo'
+::
+
+   pacman -Syu sudo
 
 allow group 'sudoers' to use sudo (in conf file):
+::
 
-visudo
+   visudo
 
 --> add line:
+::
+
         %sudoers    ALL=(ALL) ALL
 
 log out of root session:
+::
 
     exit
 
 log back in as bert
 
 test if sudo:
+::
 
     sudo -v
 
@@ -197,28 +255,45 @@ Make sure your version of Virtualbox matches the version of the Guest Additions:
 
 
     . Arch Linux guest OS:
-        . pacman -Ss virtualbox-guest-utils
+::
+
+   pacman -Ss virtualbox-guest-utils
 
 Install guest additions & hwinfo
+::
 
     sudo pacman -Syu virtualbox-guest-utils hwinfo
 
-    During installation, choose package:
+During installation, choose package:
+::
 
         virtualbox-guest-modules-arch
 
+Enable the service
+::
+
     sudo systemctl enable vboxservice.service
 
-        output:
+output:
+::
+
             created symlink /etc/systemd/system/multi-user.target.wants/vboxservice.service
             -> /usr/lib/systemd/system/vboxservice.service.
 
+Start the service
+::
+
     sudo systemctl start vboxservice.service
 
+Reboot VM
+::
+
     sudo reboot now
-    (login)
+
+And log in again
 
 Grant access to shared folders
+::
 
     sudo chmod 755 /media
     sudo usermod -aG vboxsf bert
@@ -232,19 +307,23 @@ Logout and -in for the latter change to take effect
 ===================
 
 Install some necessary packages:
+::
 
     sudo pacman -Syu base-devel clang git vim tmux time zip unzip dialog wget dos2unix hwinfo openssh knockd lighttpd ffmpeg python-mako python-sphinx asciidoc
 
 Install xorg-related packages:
+::
 
     sudo pacman -Syu xorg-server xorg-xinit xorg-apps xorg-apps xorg-xfontsel xorg-fonts-misc unclutter dmenu ttf-dejavu ttf-inconsolata adobe-source-code-pro-fonts
 
 The 2 previous commands can be combined by pasting all package names in a text file in a vboxsf shared folder and running:
+::
 
     sudo pacman -Syu - < /media/sf_pub/packages.txt
 
 
 Install dwm from AUR:
+::
 
     curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz
     curl -L -O https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz
@@ -255,62 +334,92 @@ Install dwm from AUR:
     cd st && makepkg -si && cd -
     cd dwm && makepkg -si && cd -
 
-    ****** snapshot : Packages installed ******
+****** snapshot : Packages installed ******
 
 
 7. Set up xorg, dwm
 ===================
 
-vim ~/.xinitrc
+Edit the config file read by 'startx'
+::
+
+   vim ~/.xinitrc
+
+Write:
+::
 
     VBoxClient --display --clipboard
     setxkbmap be
     exec dwm
 
-startx
+Start xorg, and dwm
+::
 
-    dwm starts up
-    alt-enter to open st session
-    show all possible screen resolutions:
-        xrandr
+   startx
+
+dwm starts up
+alt-enter to open st session
+show all possible screen resolutions:
+::
+
+      xrandr
+
+::
 
     dwm -v
-        dwm-6.1
+
+output: dwm-6.1
+
+::
 
     st -v
-        st 0.7
 
-    The latter versions are identical to the effie setup
+output: st 0.7
 
+The latter versions are identical to the effie setup
 
-    shutdown vm
+Shutdown VM
 
-    Windows Command Prompt:
+Windows Command Prompt:
+::
 
-        VBoxManage setextradata "yeba" "CustomVideoMode1" "1600x900x24"
+   VBoxManage setextradata "yeba" "CustomVideoMode1" "1600x900x24"
 
-    start vm
+Start vm
+
+Set video resolution at startup
+::
 
     sudoedit /etc/default/grub
-        GRUB_CMDLINE_LINUX_DEFAULT="quiet video=1600x900"
 
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
+Find the line starting with 'GRUB_CMDLINE_LINUX_DEFAULT=' and change it:
+::
 
-    Auto-login on TTY1:
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet video=1600x900"
 
-        sudo systemctl edit getty@tty1
+Update grub with the new config
+::
 
-        add lines:
+   sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-            [Service]
-            ExecStart=
-            ExecStart=-/usr/bin/agetty --autologin bert --noclear %I $TERM
+Auto-login on TTY1:
+::
+
+   sudo systemctl edit getty@tty1
+
+add lines:
+::
+
+   [Service]
+   ExecStart=
+   ExecStart=-/usr/bin/agetty --autologin bert --noclear %I $TERM
 
 
 
 8. Personal tools and config
 ============================
 
+::
     mkdir ~/tools && cd ~/tools
     git clone https://github.com/bergoid/lswrappers.git
     git clone https://github.com/bergoid/rabot.git
@@ -321,29 +430,37 @@ startx
     dotfiles/install_dotfiles
 
 
-    Do manually:
+Do manually:
+::
 
-        ~/tools/misc
-        ~/.gtpresets
-        ~/.ssh
+   ~/tools/misc
+   ~/.gtpresets
+   ~/.ssh
 
 youtube-dl without pacman:
+::
 
     sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
     sudo chmod a+rx /usr/local/bin/youtube-dl
 
-sudo pacman -Syu knockd reflector
+Install knockd & reflector
+::
 
-    Update mirrorlist:
+   sudo pacman -Syu knockd reflector
 
-        sudo reflector --age 6 --fastest 64 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+Update mirrorlist:
+::
+
+   sudo reflector --age 6 --fastest 64 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 
-    Set remote URLS to ssh protocol:
-        git remote set-url origin github_bergoid:bergoid/anthos.git
-        etc ...
+Set remote URLS to ssh protocol:
+::
 
-    ****** snapshot : Xorg, dwm, personal tools & config ******
+   git remote set-url origin github_bergoid:bergoid/anthos.git
+   # etc ...
+
+****** snapshot : Xorg, dwm, personal tools & config ******
 
     Copy from effie:
         ~/notes.txt

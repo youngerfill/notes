@@ -1,5 +1,6 @@
+:doc:`/arch/pc/index`	:timestamp:`2018-11-26 21:49:36`	:doc:`/tags/arch/index` 
+:doc:`/arch/VirtualBox/index`	:timestamp:`2018-11-26 09:04:36`	:doc:`/tags/arch/index` :greytext:`|` :doc:`/tags/VirtualBox/index` 
 :doc:`/cheatsheet/index`	:timestamp:`2018-11-20 16:24:12`	:doc:`/tags/bash/index` 
-:doc:`/arch/VirtualBox/index`	:timestamp:`2018-11-20 16:19:07`	:doc:`/tags/arch/index` :greytext:`|` :doc:`/tags/VirtualBox/index` 
 :doc:`/docs/index`	:timestamp:`2018-11-18 21:30:15`	
 :doc:`/android/index`	:timestamp:`2018-10-07 20:51:54`	
 :doc:`/rp/rp0w/index`	:timestamp:`2018-06-11 09:28:32`	

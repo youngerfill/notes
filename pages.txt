@@ -19,6 +19,7 @@ source/tags/bash
 source/tags/Python
 source/android
 source/arch/VirtualBox
+source/arch/pc
 source/arch
 source/arch/vps
 source/babs

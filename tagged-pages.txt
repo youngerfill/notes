@@ -1,5 +1,6 @@
 source/sicp/index: sicp
 source/cheatsheet/index: bash
 source/arch/VirtualBox/index: arch	VirtualBox
+source/arch/pc/index: arch
 source/arch/vps/index: arch
 source/pygmentstest/index: bash	C++	Python

@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>How to install Arch Linux on a PC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+</head>
+<body>
+    <div id="header">
+        <div class="nav">
+            <div class="path">
+                <a href="../../index.html">notes</a> &#47;
+                <a href="../index.html">arch</a> &#47;
+                <a href=""> How to install Arch Linux on a PC </a>
+            </div>
+
+    
+    
+    
+    
+        </div>
+        
+            <div class="timestamp" title="Last modified">
+                2018-11-26 20:49:36 UTC
+            </div>
+    
+        <div class="tags">
+            <a href="../../tags/arch/index.html" title="tag"> arch </a>
+        </div>
+
+    </div>
+
+    <div id="document">
+        <div class="section" id="how-to-install-arch-linux-on-a-pc">
+<h1>How to install Arch Linux on a PC</h1>
+<p>This guide explains how to install vanilla Arch Linux on a PC.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>A PC or a laptop, with:</dt>
+<dd><ul class="first last">
+<li>a USB port</li>
+<li>wifi adapter</li>
+<li>a HDD with contents that are no longer needed</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>A USB stick with contents that are no longer needed.</li>
+<li>A PC with a working operating system and internet access. This may also be the machine we will install Arch Linux on. We will assume a Linux(-like) environment with ‘curl’ and ‘dd’</li>
+</ul>
+<p>The strategy is as follows:</p>
+<ol class="arabic simple">
+<li>On the working PC, create a bootable USB stick with an Arch-based distro on it</li>
+<li>On the PC destined for Arch installation, boot from this live-USB</li>
+<li>In a bash terminal, install Arch on the HDD with the commands found in this guide</li>
+</ol>
+</div>
+<div class="section" id="creating-a-live-usb">
+<h2>Creating a live-USB</h2>
+<p>On the working PC, download the .iso file of an Arch-based distro. ArchBang for instance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">LO</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sourceforge</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">archbang</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">download</span>
+</pre></div>
+</div>
+<p>Plug in the USB stick and write the .iso file on it. Here we assume the USB stick is device ‘/dev/sdb’:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">i</span>
+<span class="n">dd</span> <span class="n">bs</span><span class="o">=</span><span class="mi">4</span><span class="n">M</span> <span class="k">if</span><span class="o">=</span><span class="n">archbang</span><span class="o">-</span><span class="n">rc</span><span class="o">-</span><span class="mi">1810</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">iso</span> <span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span> <span class="n">status</span><span class="o">=</span><span class="n">progress</span> <span class="n">oflag</span><span class="o">=</span><span class="n">sync</span> <span class="o">&amp;&amp;</span> <span class="n">sync</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="booting-from-the-usb-stick">
+<h2>Booting from the USB stick</h2>
+<p>Make sure the USB stick is plugged into the PC meant for Arch Linux, (Re-)boot the machine and enter the boot menu immediately at startup (press F9 or F12, or so).
+In the boot menu, choose to boot from USB.
+Once the OS has finished starting up, and if you’re using wifi, set up your internet connection with the GUI. In the OpenBox desktop environment of ArchBang, this can be done in the lower right corner of the screen.</p>
+<p>Then, open a bash prompt and set your keyboard layout, if needed</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setxkbmap</span> <span class="n">be</span>
+</pre></div>
+</div>
+<p>Test your internet connection</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Go into a root prompt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">i</span>
+</pre></div>
+</div>
+<p>Make sure the system clock on the host OS is synced with NTP</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timedatectl</span> <span class="nb">set</span><span class="o">-</span><span class="n">ntp</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-target-os">
+<h2>Install target OS</h2>
+<p>TODO: wipe MBR due to FlexNet?</p>
+<p>(Re-)partition the HDD. We assume the device is ‘/dev/sda’.
+A possible partition layout is:</p>
+<ol class="arabic simple">
+<li>13G for the root partition</li>
+<li>The swap partiton. Size: twice the amount of RAM.</li>
+<li>The /home partition. Takes up the rest of the space.</li>
+</ol>
+<p>To create the partition table, follow the instructions in ‘fdisk’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+</pre></div>
+</div>
+<p>Format the partitions</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkfs</span><span class="o">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>
+<span class="n">mkswap</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>
+<span class="n">swapon</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda2</span>
+<span class="n">mkfs</span><span class="o">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span>
+</pre></div>
+</div>
+<p>Mount the partitions</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span>
+<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span><span class="o">/</span><span class="n">home</span>
+<span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda3</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span><span class="o">/</span><span class="n">home</span>
+</pre></div>
+</div>
+<p>Update the mirrorlist according to your location. Move the URL of a server near you to the top of the file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mirrorlist</span>
+</pre></div>
+</div>
+<p>Install some initial packages on the target system</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacstrap</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span> <span class="n">base</span> <span class="n">grub</span> <span class="n">sudo</span> <span class="n">reflector</span>
+</pre></div>
+</div>
+<p>Generate fstab file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">genfstab</span> <span class="o">-</span><span class="n">U</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
+</pre></div>
+</div>
+<p>‘chroot’ into the target filsystem</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="o">-</span><span class="n">chroot</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">targetfs</span>
+</pre></div>
+</div>
+<p>Set your timezone</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">-</span><span class="n">sf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">zoneinfo</span><span class="o">/</span><span class="n">Europe</span><span class="o">/</span><span class="n">Brussels</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">localtime</span>
+</pre></div>
+</div>
+<p>Use UTC on the hardware clock</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hwclock</span> <span class="o">--</span><span class="n">systohc</span> <span class="o">--</span><span class="n">utc</span>
+</pre></div>
+</div>
+<p>Set the locale</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">locale</span><span class="o">.</span><span class="n">gen</span>
+<span class="n">locale</span><span class="o">-</span><span class="n">gen</span>
+<span class="n">echo</span> <span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">locale</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Set the keyboard layout on the target system</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">KEYMAP</span><span class="o">=</span><span class="n">be</span><span class="o">-</span><span class="n">latin1</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vconsole</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Set the hostname</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">tuma</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hostname</span>
+</pre></div>
+</div>
+<p>Set hostname as an alias for localhost</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;127.0.0.1 tuma.localdomain tuma&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+</pre></div>
+</div>
+<p>Set the root password</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">passwd</span>
+</pre></div>
+</div>
+<p>Add a non-root user, with ‘sudo’ rights</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">groupadd</span> <span class="n">sudoers</span> <span class="o">&amp;&amp;</span> <span class="n">useradd</span> <span class="o">-</span><span class="n">G</span> <span class="n">sudoers</span> <span class="o">-</span><span class="n">m</span> <span class="n">bert</span>
+</pre></div>
+</div>
+<p>Allow group ‘sudoers’ to use sudo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">udoers ALL=(ALL) ALL&quot;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sudoers</span>
+</pre></div>
+</div>
+<p>Set the password for this user</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">passwd</span> <span class="n">bert</span>
+</pre></div>
+</div>
+<p>Update &amp; sort mirrorlist</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reflector</span> <span class="o">--</span><span class="n">age</span> <span class="mi">12</span> <span class="o">--</span><span class="n">protocol</span> <span class="n">https</span> <span class="o">--</span><span class="n">sort</span> <span class="n">rate</span> <span class="o">--</span><span class="n">save</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mirrorlist</span>
+</pre></div>
+</div>
+<p>Install some necessary packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">base</span><span class="o">-</span><span class="n">devel</span> <span class="n">clang</span> <span class="n">git</span> <span class="n">vim</span> <span class="n">tmux</span> <span class="n">time</span> <span class="nb">zip</span> <span class="n">unzip</span> <span class="n">dialog</span> <span class="n">dos2unix</span> <span class="n">hwinfo</span> <span class="n">haveged</span> <span class="n">arch</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">scripts</span> <span class="n">wpa_supplicant</span> <span class="n">openssh</span> <span class="n">knockd</span>
+</pre></div>
+</div>
+<p>Install some more optional packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">lighttpd</span> <span class="n">ffmpeg</span> <span class="n">python</span><span class="o">-</span><span class="n">mako</span> <span class="n">python</span><span class="o">-</span><span class="n">sphinx</span> <span class="n">asciidoc</span>
+</pre></div>
+</div>
+<p>Install xorg-related packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">xorg</span><span class="o">-</span><span class="n">server</span> <span class="n">xorg</span><span class="o">-</span><span class="n">xinit</span> <span class="n">xorg</span><span class="o">-</span><span class="n">apps</span> <span class="n">xorg</span><span class="o">-</span><span class="n">apps</span> <span class="n">xorg</span><span class="o">-</span><span class="n">xfontsel</span> <span class="n">xorg</span><span class="o">-</span><span class="n">fonts</span><span class="o">-</span><span class="n">misc</span> <span class="n">unclutter</span> <span class="n">dmenu</span> <span class="n">ttf</span><span class="o">-</span><span class="n">inconsolata</span> <span class="n">firefox</span>
+</pre></div>
+</div>
+<p>Install boot loader ‘grub’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">target</span><span class="o">=</span><span class="n">i386</span><span class="o">-</span><span class="n">pc</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+</pre></div>
+</div>
+<p>Edit the grub config file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudoedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">grub</span>
+</pre></div>
+</div>
+<p>Change the value of the variable into this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GRUB_CMDLINE_LINUX_DEFAULT=”quiet video=SVIDEO-1:d”
+</pre></div>
+</div>
+<p>Re-configure grub</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+<p>Leave the ‘chroot’ environment</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
+<p>Reboot into the installed OS</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reboot</span> <span class="n">now</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-up-networking">
+<h2>Set up networking</h2>
+<p>Log in with the just-created non-root user.</p>
+<p>List the network interfaces</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ip</span> <span class="n">link</span>
+</pre></div>
+</div>
+<p>In the output you should see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wlp16s0</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">BROADCAST</span><span class="p">,</span><span class="n">MULTICAST</span><span class="o">&gt;</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Use a user-friendly GUI tool to setup a wireless connection</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">wifi</span><span class="o">-</span><span class="n">menu</span> <span class="o">-</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Back in the bash terminal, test internet access. If this fails, wait a few seconds and try again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Enable the netctl profile, so that it auto-starts after reboot. If you named your profile ‘mywifi’ in the ‘wifi-menu’ tool, the command looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">netctl</span> <span class="n">enable</span> <span class="n">mywifi</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-up-the-window-manager">
+<h2>Set up the window manager</h2>
+<p>Enable the ‘haveged’ entropy daemon</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">haveged</span>
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">haveged</span>
+</pre></div>
+</div>
+<p>Auto-login at startup</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">edit</span> <span class="n">getty</span><span class="nd">@tty1</span>
+</pre></div>
+</div>
+<p>Add the lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin bert --noclear %I $TERM
+</pre></div>
+</div>
+<p>Download a customized version of ‘dwm’, ‘st’ and ‘dmenu’, and build &amp; install them</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">prj</span>
+<span class="n">cd</span> <span class="n">prj</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">dwm</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">dwm</span>
+<span class="n">sudo</span> <span class="o">./</span><span class="n">rebuild</span>
+</pre></div>
+</div>
+<p>Edit .xinitrc</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">~/.</span><span class="n">xinitrc</span>
+</pre></div>
+</div>
+<p>And make sure it has the following contents:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setxkbmap</span> <span class="n">be</span>
+<span class="n">unclutter</span> <span class="o">-</span><span class="n">jitter</span> <span class="mi">2</span> <span class="o">-</span><span class="n">noevents</span> <span class="o">-</span><span class="n">root</span> <span class="o">&amp;</span>
+<span class="n">exec</span> <span class="n">dwm</span>
+</pre></div>
+</div>
+<p>Start dwm</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">startx</span>
+</pre></div>
+</div>
+<p>Once you have installed ‘dotfiles’ from “Personal tools”, dwm will auto-start at startup.</p>
+</div>
+<div class="section" id="personal-tools">
+<h2>Personal tools</h2>
+<p>Install git repos</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">tools</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">~/</span><span class="n">tools</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">lswrappers</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">rabot</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">gt</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">preppy</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">avtools</span><span class="o">.</span><span class="n">git</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bergoid</span><span class="o">/</span><span class="n">dotfiles</span><span class="o">.</span><span class="n">git</span>
+<span class="n">dotfiles</span><span class="o">/</span><span class="n">install_dotfiles</span>
+</pre></div>
+</div>
+<p>youtube-dl without pacman:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">yt</span><span class="o">-</span><span class="n">dl</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rx</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>TODO:</p>
+<p>pikaur</p>
+<p>disallow root login?</p>
+<p>sshd config from VPS</p>
+<p>acpi events: lid, power button</p>
+</div>
+</div>
+
+    </div>
+    <div id="footer">
+    
+    
+        Footer? What footer?
+
+    </div>
+</body>
+</html>

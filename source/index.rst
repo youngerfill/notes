@@ -1,7 +1,7 @@
 .. include:: toctree.inc
 
-:doc:`/cheatsheet/index`
+:doc:`/arch/pc/index`
 :doc:`/arch/VirtualBox/index`
+:doc:`/cheatsheet/index`
 :doc:`/docs/index`
 :doc:`/android/index`
-:doc:`/rp/rp0w/index`

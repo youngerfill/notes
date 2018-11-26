@@ -24,7 +24,7 @@
         </div>
         
             <div class="timestamp" title="Last modified">
-                2018-11-20 15:19:07 UTC
+                2018-11-26 08:04:36 UTC
             </div>
     
         <div class="tags">
@@ -187,43 +187,91 @@ saved at: “M:vmisoarchlinux-2018.02.01-x86_64.iso”</dd>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span>
 </pre></div>
 </div>
-<p>timedatectl set-ntp true</p>
-<p>fdisk -l /dev/sda</p>
-<dl class="docutils">
-<dt>fdisk /dev/sda</dt>
-<dd>–&gt; n : new partition
-–&gt; p : primary partition
-–&gt; enter : partition #1
-–&gt; enter : default first sector
-–&gt; enter : default last sector
-–&gt; w write partition table</dd>
-</dl>
-<p>mkfs.ext4 /dev/sda1</p>
-<p>mount /dev/sda1 /mnt</p>
-<p>Make sure nearest mirror is first in the list:</p>
-<blockquote>
-<div>vi /etc/pacman.d/mirrorlist</div></blockquote>
-<p>pacstrap /mnt base</p>
-<p>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</p>
-<p>arch-chroot /mnt</p>
-<p>ln -s /usr/share/zoneinfo/Europe/Brussels /etc/localtime</p>
-<p>hwclock –systohc –utc</p>
-<p>echo en_US.UTF-8 UTF-8 &gt; /etc/locale.gen</p>
-<p>locale-gen</p>
-<p>echo LANG=en_US.UTF-8 &gt; /etc/locale.conf</p>
-<p>echo KEYMAP=be-latin1 &gt; /etc/vconsole.conf</p>
-<p>echo yeba &gt; /etc/hostname</p>
-<dl class="docutils">
-<dt>vi /etc/hosts</dt>
-<dd>–&gt; add:
-127.0.0.1 yeba.localdomain yeba</dd>
-</dl>
-<p>passwd</p>
-<p>pacman -Syu grub</p>
-<p>grub-install –target=i386-pc /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg</p>
-<p>exit</p>
-<p>shutdown now</p>
+<p>Syncronize the system clock with NTP</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timedatectl</span> <span class="nb">set</span><span class="o">-</span><span class="n">ntp</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Create partition table</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdisk</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+
+<span class="n">fdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+    <span class="o">--&gt;</span> <span class="n">n</span> <span class="p">:</span> <span class="n">new</span> <span class="n">partition</span>
+    <span class="o">--&gt;</span> <span class="n">p</span> <span class="p">:</span> <span class="n">primary</span> <span class="n">partition</span>
+    <span class="o">--&gt;</span> <span class="n">enter</span> <span class="p">:</span> <span class="n">partition</span> <span class="c1">#1</span>
+    <span class="o">--&gt;</span> <span class="n">enter</span> <span class="p">:</span> <span class="n">default</span> <span class="n">first</span> <span class="n">sector</span>
+    <span class="o">--&gt;</span> <span class="n">enter</span> <span class="p">:</span> <span class="n">default</span> <span class="n">last</span> <span class="n">sector</span>
+    <span class="o">--&gt;</span> <span class="n">w</span> <span class="n">write</span> <span class="n">partition</span> <span class="n">table</span>
+</pre></div>
+</div>
+<p>Format the partition</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkfs</span><span class="o">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>
+</pre></div>
+</div>
+<p>Mount the partition</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="o">/</span><span class="n">mnt</span>
+</pre></div>
+</div>
+<p>Make sure nearest mirror is first in the list</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mirrorlist</span>
+</pre></div>
+</div>
+<p>Install the ‘base’ package group</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacstrap</span> <span class="o">/</span><span class="n">mnt</span> <span class="n">base</span>
+</pre></div>
+</div>
+<p>Create an fstab file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">genfstab</span> <span class="o">-</span><span class="n">U</span> <span class="o">/</span><span class="n">mnt</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
+</pre></div>
+</div>
+<p>‘chroot’ into the newly created system</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span><span class="o">-</span><span class="n">chroot</span> <span class="o">/</span><span class="n">mnt</span>
+</pre></div>
+</div>
+<p>Set the timezone</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">zoneinfo</span><span class="o">/</span><span class="n">Europe</span><span class="o">/</span><span class="n">Brussels</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">localtime</span>
+</pre></div>
+</div>
+<p>Use UTC in hardware clock. Initialize the hardware clock from
+current system time.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hwclock</span> <span class="o">--</span><span class="n">systohc</span> <span class="o">--</span><span class="n">utc</span>
+</pre></div>
+</div>
+<p>Use US locale</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">locale</span><span class="o">.</span><span class="n">gen</span>
+<span class="n">locale</span><span class="o">-</span><span class="n">gen</span>
+<span class="n">echo</span> <span class="n">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">locale</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Use Belgian keymap</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">KEYMAP</span><span class="o">=</span><span class="n">be</span><span class="o">-</span><span class="n">latin1</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">vconsole</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Set hostname</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">yeba</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hostname</span>
+</pre></div>
+</div>
+<p>Set localhost alias</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vi</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">hosts</span>
+</pre></div>
+</div>
+<p>In /etc/hosts, add:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span> <span class="n">yeba</span><span class="o">.</span><span class="n">localdomain</span> <span class="n">yeba</span>
+</pre></div>
+</div>
+<p>Set password</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">passwd</span>
+</pre></div>
+</div>
+<p>Install boot loader ‘grub’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">grub</span>
+<span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">target</span><span class="o">=</span><span class="n">i386</span><span class="o">-</span><span class="n">pc</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span> <span class="o">&amp;&amp;</span> <span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+<p>Leave chroot environment and shutdown VM</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+<span class="n">shutdown</span> <span class="n">now</span>
+</pre></div>
+</div>
 <p>in settings of VM: Remove disk from virtual drive</p>
 <p>start VM</p>
 <blockquote>
@@ -231,31 +279,43 @@ grub-mkconfig -o /boot/grub/grub.cfg</p>
 </div>
 <div class="section" id="a-one-user-system">
 <h2>4. A one-user system:</h2>
-<p>useradd -m bert</p>
-<p>groupadd sudoers</p>
-<p>usermod -aG sudoers bert</p>
-<p>passwd bert</p>
-<dl class="docutils">
-<dt>enable NW-ing:</dt>
-<dd>systemctl enable <a class="reference external" href="mailto:dhcpcd&#37;&#52;&#48;enp0s3&#46;service">dhcpcd<span>&#64;</span>enp0s3<span>&#46;</span>service</a>
-systemctl start <a class="reference external" href="mailto:dhcpcd&#37;&#52;&#48;enp0s3&#46;service">dhcpcd<span>&#64;</span>enp0s3<span>&#46;</span>service</a></dd>
-<dt>check connection:</dt>
-<dd>curl www.google.com</dd>
-</dl>
-<p>pacman -Syu sudo</p>
+<p>Add a non-root user, with ‘sudo’ rights</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useradd</span> <span class="o">-</span><span class="n">m</span> <span class="n">bert</span>
+<span class="n">groupadd</span> <span class="n">sudoers</span>
+<span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">sudoers</span> <span class="n">bert</span>
+<span class="n">passwd</span> <span class="n">bert</span>
+</pre></div>
+</div>
+<p>enable NW-ing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">dhcpcd</span><span class="nd">@enp0s3</span><span class="o">.</span><span class="n">service</span>
+<span class="n">systemctl</span> <span class="n">start</span> <span class="n">dhcpcd</span><span class="nd">@enp0s3</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>check connection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>Install ‘sudo’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">sudo</span>
+</pre></div>
+</div>
 <p>allow group ‘sudoers’ to use sudo (in conf file):</p>
-<p>visudo</p>
-<dl class="docutils">
-<dt>–&gt; add line:</dt>
-<dd>%sudoers    ALL=(ALL) ALL</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">visudo</span>
+</pre></div>
+</div>
+<p>–&gt; add line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">sudoers</span>    <span class="n">ALL</span><span class="o">=</span><span class="p">(</span><span class="n">ALL</span><span class="p">)</span> <span class="n">ALL</span>
+</pre></div>
+</div>
 <p>log out of root session:</p>
-<blockquote>
-<div>exit</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>
+</pre></div>
+</div>
 <p>log back in as bert</p>
 <p>test if sudo:</p>
-<blockquote>
-<div>sudo -v</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
 <p>(after entering password should not output anything if all is well)</p>
 <blockquote>
 <div><strong>**</strong> snapshot : User bert, NW OK <strong>**</strong></div></blockquote>
@@ -268,32 +328,43 @@ systemctl start <a class="reference external" href="mailto:dhcpcd&#37;&#52;&#48;
 <dt>. VirtualBox:</dt>
 <dd>. Help/About VirtualBox
 . File/Check for updates</dd>
-<dt>. Arch Linux guest OS:</dt>
-<dd>. pacman -Ss virtualbox-guest-utils</dd>
 </dl>
+<p>. Arch Linux guest OS:</p>
 </div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pacman</span> <span class="o">-</span><span class="n">Ss</span> <span class="n">virtualbox</span><span class="o">-</span><span class="n">guest</span><span class="o">-</span><span class="n">utils</span>
+</pre></div>
+</div>
 <p>Install guest additions &amp; hwinfo</p>
-<blockquote>
-<div><p>sudo pacman -Syu virtualbox-guest-utils hwinfo</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">virtualbox</span><span class="o">-</span><span class="n">guest</span><span class="o">-</span><span class="n">utils</span> <span class="n">hwinfo</span>
+</pre></div>
+</div>
 <p>During installation, choose package:</p>
-<blockquote>
-<div>virtualbox-guest-modules-arch</div></blockquote>
-<p>sudo systemctl enable vboxservice.service</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>output:</dt>
-<dd>created symlink /etc/systemd/system/multi-user.target.wants/vboxservice.service
--&gt; /usr/lib/systemd/system/vboxservice.service.</dd>
-</dl>
-</div></blockquote>
-<p>sudo systemctl start vboxservice.service</p>
-<p>sudo reboot now
-(login)</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualbox</span><span class="o">-</span><span class="n">guest</span><span class="o">-</span><span class="n">modules</span><span class="o">-</span><span class="n">arch</span>
+</pre></div>
+</div>
+<p>Enable the service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">vboxservice</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">created</span> <span class="n">symlink</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">wants</span><span class="o">/</span><span class="n">vboxservice</span><span class="o">.</span><span class="n">service</span>
+<span class="o">-&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">vboxservice</span><span class="o">.</span><span class="n">service</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Start the service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">vboxservice</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>Reboot VM</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reboot</span> <span class="n">now</span>
+</pre></div>
+</div>
+<p>And log in again</p>
 <p>Grant access to shared folders</p>
-<blockquote>
-<div>sudo chmod 755 /media
-sudo usermod -aG vboxsf bert</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">755</span> <span class="o">/</span><span class="n">media</span>
+<span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">aG</span> <span class="n">vboxsf</span> <span class="n">bert</span>
+</pre></div>
+</div>
 <p>Logout and -in for the latter change to take effect</p>
 <blockquote>
 <div><strong>**</strong> snapshot : vbox guest additions <strong>**</strong></div></blockquote>
@@ -301,100 +372,130 @@ sudo usermod -aG vboxsf bert</div></blockquote>
 <div class="section" id="lots-of-packages">
 <h2>6. Lots of packages</h2>
 <p>Install some necessary packages:</p>
-<blockquote>
-<div>sudo pacman -Syu base-devel clang git vim tmux time zip unzip dialog wget dos2unix hwinfo openssh knockd lighttpd ffmpeg python-mako python-sphinx asciidoc</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">base</span><span class="o">-</span><span class="n">devel</span> <span class="n">clang</span> <span class="n">git</span> <span class="n">vim</span> <span class="n">tmux</span> <span class="n">time</span> <span class="nb">zip</span> <span class="n">unzip</span> <span class="n">dialog</span> <span class="n">wget</span> <span class="n">dos2unix</span> <span class="n">hwinfo</span> <span class="n">openssh</span> <span class="n">knockd</span> <span class="n">lighttpd</span> <span class="n">ffmpeg</span> <span class="n">python</span><span class="o">-</span><span class="n">mako</span> <span class="n">python</span><span class="o">-</span><span class="n">sphinx</span> <span class="n">asciidoc</span>
+</pre></div>
+</div>
 <p>Install xorg-related packages:</p>
-<blockquote>
-<div>sudo pacman -Syu xorg-server xorg-xinit xorg-apps xorg-apps xorg-xfontsel xorg-fonts-misc unclutter dmenu ttf-dejavu ttf-inconsolata adobe-source-code-pro-fonts</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">xorg</span><span class="o">-</span><span class="n">server</span> <span class="n">xorg</span><span class="o">-</span><span class="n">xinit</span> <span class="n">xorg</span><span class="o">-</span><span class="n">apps</span> <span class="n">xorg</span><span class="o">-</span><span class="n">apps</span> <span class="n">xorg</span><span class="o">-</span><span class="n">xfontsel</span> <span class="n">xorg</span><span class="o">-</span><span class="n">fonts</span><span class="o">-</span><span class="n">misc</span> <span class="n">unclutter</span> <span class="n">dmenu</span> <span class="n">ttf</span><span class="o">-</span><span class="n">dejavu</span> <span class="n">ttf</span><span class="o">-</span><span class="n">inconsolata</span> <span class="n">adobe</span><span class="o">-</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">fonts</span>
+</pre></div>
+</div>
 <p>The 2 previous commands can be combined by pasting all package names in a text file in a vboxsf shared folder and running:</p>
-<blockquote>
-<div>sudo pacman -Syu - &lt; /media/sf_pub/packages.txt</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="o">-</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">sf_pub</span><span class="o">/</span><span class="n">packages</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
 <p>Install dwm from AUR:</p>
-<blockquote>
-<div><p>curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/st.tar.gz</a>
-curl -L -O <a class="reference external" href="https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz">https://aur.archlinux.org/cgit/aur.git/snapshot/dwm.tar.gz</a></p>
-<p>tar xzvf st.tar.gz
-tar xzvf dwm.tar.gz</p>
-<p>cd st &amp;&amp; makepkg -si &amp;&amp; cd -
-cd dwm &amp;&amp; makepkg -si &amp;&amp; cd -</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">aur</span><span class="o">.</span><span class="n">archlinux</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">cgit</span><span class="o">/</span><span class="n">aur</span><span class="o">.</span><span class="n">git</span><span class="o">/</span><span class="n">snapshot</span><span class="o">/</span><span class="n">st</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="o">-</span><span class="n">O</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">aur</span><span class="o">.</span><span class="n">archlinux</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">cgit</span><span class="o">/</span><span class="n">aur</span><span class="o">.</span><span class="n">git</span><span class="o">/</span><span class="n">snapshot</span><span class="o">/</span><span class="n">dwm</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="n">tar</span> <span class="n">xzvf</span> <span class="n">st</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="n">xzvf</span> <span class="n">dwm</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+
+<span class="n">cd</span> <span class="n">st</span> <span class="o">&amp;&amp;</span> <span class="n">makepkg</span> <span class="o">-</span><span class="n">si</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">-</span>
+<span class="n">cd</span> <span class="n">dwm</span> <span class="o">&amp;&amp;</span> <span class="n">makepkg</span> <span class="o">-</span><span class="n">si</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">-</span>
+</pre></div>
+</div>
 <p><strong>**</strong> snapshot : Packages installed <strong>**</strong></p>
-</div></blockquote>
 </div>
 <div class="section" id="set-up-xorg-dwm">
 <h2>7. Set up xorg, dwm</h2>
-<p>vim ~/.xinitrc</p>
-<blockquote>
-<div>VBoxClient –display –clipboard
-setxkbmap be
-exec dwm</div></blockquote>
-<p>startx</p>
-<blockquote>
-<div><p>dwm starts up
+<p>Edit the config file read by ‘startx’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="o">~/.</span><span class="n">xinitrc</span>
+</pre></div>
+</div>
+<p>Write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VBoxClient</span> <span class="o">--</span><span class="n">display</span> <span class="o">--</span><span class="n">clipboard</span>
+<span class="n">setxkbmap</span> <span class="n">be</span>
+<span class="n">exec</span> <span class="n">dwm</span>
+</pre></div>
+</div>
+<p>Start xorg, and dwm</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">startx</span>
+</pre></div>
+</div>
+<p>dwm starts up
 alt-enter to open st session
 show all possible screen resolutions:</p>
-<blockquote>
-<div>xrandr</div></blockquote>
-<dl class="docutils">
-<dt>dwm -v</dt>
-<dd>dwm-6.1</dd>
-<dt>st -v</dt>
-<dd>st 0.7</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dwm</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>output: dwm-6.1</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">st</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>output: st 0.7</p>
 <p>The latter versions are identical to the effie setup</p>
-<p>shutdown vm</p>
+<p>Shutdown VM</p>
 <p>Windows Command Prompt:</p>
-<blockquote>
-<div>VBoxManage setextradata “yeba” “CustomVideoMode1” “1600x900x24”</div></blockquote>
-<p>start vm</p>
-<dl class="docutils">
-<dt>sudoedit /etc/default/grub</dt>
-<dd>GRUB_CMDLINE_LINUX_DEFAULT=”quiet video=1600x900”</dd>
-</dl>
-<p>sudo grub-mkconfig -o /boot/grub/grub.cfg</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VBoxManage</span> <span class="n">setextradata</span> <span class="s2">&quot;yeba&quot;</span> <span class="s2">&quot;CustomVideoMode1&quot;</span> <span class="s2">&quot;1600x900x24&quot;</span>
+</pre></div>
+</div>
+<p>Start vm</p>
+<p>Set video resolution at startup</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudoedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">grub</span>
+</pre></div>
+</div>
+<p>Find the line starting with ‘GRUB_CMDLINE_LINUX_DEFAULT=’ and change it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&quot;quiet video=1600x900&quot;</span>
+</pre></div>
+</div>
+<p>Update grub with the new config</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
 <p>Auto-login on TTY1:</p>
-<blockquote>
-<div><p>sudo systemctl edit <a class="reference external" href="mailto:getty&#37;&#52;&#48;tty1">getty<span>&#64;</span>tty1</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">edit</span> <span class="n">getty</span><span class="nd">@tty1</span>
+</pre></div>
+</div>
 <p>add lines:</p>
-<blockquote>
-<div>[Service]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[Service]
 ExecStart=
-ExecStart=-/usr/bin/agetty –autologin bert –noclear %I $TERM</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+ExecStart=-/usr/bin/agetty --autologin bert --noclear %I $TERM
+</pre></div>
+</div>
 </div>
 <div class="section" id="personal-tools-and-config">
 <h2>8. Personal tools and config</h2>
-<blockquote>
-<div><p>mkdir ~/tools &amp;&amp; cd ~/tools
+<dl class="docutils">
+<dt>::</dt>
+<dd>mkdir ~/tools &amp;&amp; cd ~/tools
 git clone <a class="reference external" href="https://github.com/bergoid/lswrappers.git">https://github.com/bergoid/lswrappers.git</a>
 git clone <a class="reference external" href="https://github.com/bergoid/rabot.git">https://github.com/bergoid/rabot.git</a>
 git clone <a class="reference external" href="https://github.com/bergoid/gt.git">https://github.com/bergoid/gt.git</a>
 git clone <a class="reference external" href="https://github.com/bergoid/preppy.git">https://github.com/bergoid/preppy.git</a>
 git clone <a class="reference external" href="https://github.com/bergoid/avtools.git">https://github.com/bergoid/avtools.git</a>
 git clone <a class="reference external" href="https://github.com/bergoid/dotfiles.git">https://github.com/bergoid/dotfiles.git</a>
-dotfiles/install_dotfiles</p>
-<p>Do manually:</p>
-<blockquote>
-<div>~/tools/misc
-~/.gtpresets
-~/.ssh</div></blockquote>
-</div></blockquote>
-<p>youtube-dl without pacman:</p>
-<blockquote>
-<div>sudo curl -L <a class="reference external" href="https://yt-dl.org/downloads/latest/youtube-dl">https://yt-dl.org/downloads/latest/youtube-dl</a> -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl</div></blockquote>
-<p>sudo pacman -Syu knockd reflector</p>
-<blockquote>
-<div><p>Update mirrorlist:</p>
-<blockquote>
-<div>sudo reflector –age 6 –fastest 64 –protocol https –sort rate –save /etc/pacman.d/mirrorlist</div></blockquote>
-<dl class="docutils">
-<dt>Set remote URLS to ssh protocol:</dt>
-<dd>git remote set-url origin github_bergoid:bergoid/anthos.git
-etc …</dd>
+dotfiles/install_dotfiles</dd>
 </dl>
+<p>Do manually:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">tools</span><span class="o">/</span><span class="n">misc</span>
+<span class="o">~/.</span><span class="n">gtpresets</span>
+<span class="o">~/.</span><span class="n">ssh</span>
+</pre></div>
+</div>
+<p>youtube-dl without pacman:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">yt</span><span class="o">-</span><span class="n">dl</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">downloads</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span>
+<span class="n">sudo</span> <span class="n">chmod</span> <span class="n">a</span><span class="o">+</span><span class="n">rx</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">youtube</span><span class="o">-</span><span class="n">dl</span>
+</pre></div>
+</div>
+<p>Install knockd &amp; reflector</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">Syu</span> <span class="n">knockd</span> <span class="n">reflector</span>
+</pre></div>
+</div>
+<p>Update mirrorlist:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reflector</span> <span class="o">--</span><span class="n">age</span> <span class="mi">6</span> <span class="o">--</span><span class="n">fastest</span> <span class="mi">64</span> <span class="o">--</span><span class="n">protocol</span> <span class="n">https</span> <span class="o">--</span><span class="n">sort</span> <span class="n">rate</span> <span class="o">--</span><span class="n">save</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">pacman</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">mirrorlist</span>
+</pre></div>
+</div>
+<p>Set remote URLS to ssh protocol:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="nb">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">github_bergoid</span><span class="p">:</span><span class="n">bergoid</span><span class="o">/</span><span class="n">anthos</span><span class="o">.</span><span class="n">git</span>
+<span class="c1"># etc ...</span>
+</pre></div>
+</div>
 <p><strong>**</strong> snapshot : Xorg, dwm, personal tools &amp; config <strong>**</strong></p>
-<dl class="docutils">
+<blockquote>
+<div><dl class="docutils">
 <dt>Copy from effie:</dt>
 <dd>~/notes.txt
 ~/cheatsheet.txt</dd>

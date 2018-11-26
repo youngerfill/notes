@@ -1,4 +1,4 @@
-arch	source/arch/VirtualBox/index	source/arch/vps/index
+arch	source/arch/VirtualBox/index	source/arch/pc/index	source/arch/vps/index
 bash	source/cheatsheet/index	source/pygmentstest/index
 C++	source/pygmentstest/index
 Python	source/pygmentstest/index

@@ -5,6 +5,7 @@ Sitemap
         - :doc:`/about/index`
         - :doc:`/android/index`
         - :doc:`/arch/index`
+            - :doc:`/arch/pc/index`
             - :doc:`/arch/VirtualBox/index`
             - :doc:`/arch/vps/index`
         - :doc:`/babs/index`
